@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3423601727529744728}
   - component: {fileID: 3423601727529744711}
+  - component: {fileID: 693912228122615791}
   m_Layer: 0
   m_Name: GlobalLight
   m_TagString: Untagged
@@ -111,3 +112,16 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &693912228122615791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423601727529744710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a006a3def146bf4aba97d6ec26b850d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalLight: {fileID: 3423601727529744711}

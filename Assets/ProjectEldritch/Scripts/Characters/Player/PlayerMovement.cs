@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private Rigidbody2D rb;
 	[Header("Debug")]
 	[SerializeField] private Vector2 moveDirection;
+	[SerializeField] private Light2D playerLight;
+	[Header("Light parameter")]
+	[SerializeField] private float onInnerRadius;
+	[SerializeField] private float onOuterRadius;
+	[SerializeField] private float offInnerRadius, offOuterRadius;
+
+	private bool lightOn = true;
+	public bool isPlayerVisible => lightOn;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -20,7 +29,14 @@ public class PlayerMovement : MonoBehaviour
 	void Update()
 	{
 		MovementInputs();
-		// transform.right = rb.velocity;
+
+		if (Input.GetKeyDown(KeyCode.F))
+		{
+			lightOn = !lightOn;
+
+			playerLight.pointLightInnerRadius = lightOn ? onInnerRadius : offInnerRadius;
+			playerLight.pointLightOuterRadius = lightOn ? onOuterRadius : offOuterRadius;
+		}
 	}
 
 	void FixedUpdate()

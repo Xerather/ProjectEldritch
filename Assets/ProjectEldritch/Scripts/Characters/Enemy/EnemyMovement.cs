@@ -8,9 +8,16 @@ public class EnemyMovement : MonoBehaviour
 	[SerializeField] private AIPath aIPath;
 	[SerializeField] private Vector2 directions;
 	[SerializeField] private float searchDuration;
+	private FOVMechanic fov;
 	private bool isChasing;
 	private bool isSearching;
 	private float searchElapsed;
+
+	void Awake()
+	{
+		fov = GetComponent<FOVMechanic>();
+		// fov.OnSpottedPlayer += UpdatePlayer;
+	}
 	void Update()
 	{
 		if (isSearching)
@@ -23,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
 			}
 		}
 	}
+
 	void LateUpdate()
 	{
 		if (isSearching || isChasing)
