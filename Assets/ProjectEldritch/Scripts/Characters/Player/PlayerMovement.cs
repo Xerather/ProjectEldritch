@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	[SerializeField] private float moveSpeed;
 	[SerializeField] private float rotationSpeed;
 	[SerializeField] private Rigidbody2D rb;
 	[Header("Debug")]
@@ -17,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float onOuterRadius;
 	[SerializeField] private float offInnerRadius, offOuterRadius;
 
+	public float moveSpeed;
 	private bool lightOn = true;
 	public bool isPlayerVisible => lightOn;
 	// Start is called before the first frame update
@@ -37,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
 			playerLight.pointLightInnerRadius = lightOn ? onInnerRadius : offInnerRadius;
 			playerLight.pointLightOuterRadius = lightOn ? onOuterRadius : offOuterRadius;
 		}
+
+		if (Input.GetKeyDown(KeyCode.Mouse0))
+		{
+
+		}
 	}
 
 	void FixedUpdate()
@@ -47,6 +50,10 @@ public class PlayerMovement : MonoBehaviour
 	void LateUpdate()
 	{
 		Move();
+	}
+
+	private void SpawnAtMousePos()
+	{
 	}
 
 	private void MovementInputs()

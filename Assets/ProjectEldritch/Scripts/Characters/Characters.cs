@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Characters : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField] protected CharactersSO characterSO;
+	[SerializeField] protected PlayerMovement playerMovement;
+	protected float currentHp;
+	protected Vector3 spawnPos;
+	protected virtual void Start()
+	{
+		spawnPos = transform.position;
+		Reset();
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Reset()
+	{
+		transform.position = spawnPos;
+		currentHp = characterSO.maxHp;
+		playerMovement.moveSpeed = characterSO.moveSpeed;
+	}
 }

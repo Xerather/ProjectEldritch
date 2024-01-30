@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 1224239835353479769}
   - component: {fileID: 1224239835353479775}
   - component: {fileID: 1524085300849118261}
+  - component: {fileID: 2782430328760300663}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -317,7 +318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f4b3caf8ee76242a23e3f8f2af1307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
   rotationSpeed: 500
   rb: {fileID: 1224239835353479769}
   moveDirection: {x: 0, y: 0}
@@ -326,6 +326,7 @@ MonoBehaviour:
   onOuterRadius: 3
   offInnerRadius: 0.3
   offOuterRadius: 1
+  moveSpeed: 4
 --- !u!70 &1524085300849118261
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -342,3 +343,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.35}
   m_Size: {x: 1.25, y: 1.84}
   m_Direction: 0
+--- !u!114 &2782430328760300663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224239835353479774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9dea51ab8900cc42b537d80d5ab19a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torch: {fileID: 8194006708952436722, guid: 223a6ee82cc2fd04e8d03c52eebd50d7, type: 3}
+  torchHolder: {fileID: 0}
