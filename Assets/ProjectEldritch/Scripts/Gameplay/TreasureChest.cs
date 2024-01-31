@@ -2,39 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreasureChest : MonoBehaviour
+public class TreasureChest : InteractableObject
 {
 	[SerializeField] private ItemSlot itemSlot;
-	[SerializeField] private TooltipEventChannelSO tooltipMoverChannel;
 	[SerializeField] private ItemEventChannelSO onItemGetChannel;
-	private bool inRange = false;
 
-	void Update()
+	protected override void TriggerInteraction()
 	{
-		if (inRange && Input.GetKeyDown(KeyCode.Q))
-		{
-			GetItem();
-		}
+		base.TriggerInteraction();
+		GetItem();
 	}
 
 	private void GetItem()
 	{
 		onItemGetChannel.RaiseEvent(itemSlot.itemSO, itemSlot.qty);
 		Destroy(this.gameObject);
-	}
-
-	private void OnTriggerEnter2D(Collider2D collider)
-	{
-		if (!collider.gameObject.CompareTag("Player")) return;
-		tooltipMoverChannel.RaiseEvent(true, this.transform);
-		inRange = true;
-	}
-
-	private void OnTriggerExit2D(Collider2D collider)
-	{
-		if (!collider.gameObject.CompareTag("Player")) return;
-
-		tooltipMoverChannel.RaiseEvent(false, this.transform);
-		inRange = false;
 	}
 }

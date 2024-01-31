@@ -44,7 +44,6 @@ public class ItemBox : MonoBehaviour
 
 	public void UseItem()
 	{
-		Debug.Log("use item " + itemSO.name);
 		OnUseAction?.Invoke(this);
 	}
 }

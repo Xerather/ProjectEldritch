@@ -65,7 +65,6 @@ public class InventoryWindow : MonoBehaviour
 		{
 			if (box.currentItemSlot.qty < 1)
 			{
-				Debug.Log("removed box add ", box.gameObject);
 				removedBoxList.Add(box);
 				continue;
 			}
@@ -75,7 +74,6 @@ public class InventoryWindow : MonoBehaviour
 		foreach (ItemBox removedBox in removedBoxList)
 		{
 			itemBoxList.Remove(removedBox);
-			Debug.Log("destrying box", removedBox);
 			Destroy(removedBox.gameObject);
 		}
 	}
@@ -91,7 +89,6 @@ public class InventoryWindow : MonoBehaviour
 
 	public void AddItem(ItemSO itemSO, int qty = 1)
 	{
-		Debug.Log("itemso = " + itemSO.name);
 		ItemSlot targetSlot = GetItemSlot(itemSO);
 		if (targetSlot == null)
 		{

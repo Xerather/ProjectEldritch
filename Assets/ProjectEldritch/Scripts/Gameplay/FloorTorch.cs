@@ -20,7 +20,6 @@ public class FloorTorch : MonoBehaviour
 		timeElapsed += Time.deltaTime;
 		if (timeElapsed > torch.lightDuration)
 		{
-			// Debug.Log($"{this.name} is destroyed");
 			Destroy(this.gameObject);
 		}
 	}

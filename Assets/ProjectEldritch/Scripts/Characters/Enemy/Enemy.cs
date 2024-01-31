@@ -72,7 +72,7 @@ public class Enemy : Characters
 	private void DoEat()
 	{
 
-		Debug.Log($"eating started for {eatDuration}s");
+		// Debug.Log($"eating started for {eatDuration}s");
 		isEating = true;
 		patrolMechanic.enabled = false;
 		fOVMechanic.enabled = false;
@@ -83,7 +83,7 @@ public class Enemy : Characters
 
 	private void OnEndEat()
 	{
-		Debug.Log($"eating finished");
+		// Debug.Log($"eating finished");
 		eatElapsed = 0;
 		isEating = false;
 		patrolMechanic.enabled = true;
@@ -94,14 +94,14 @@ public class Enemy : Characters
 
 	private void DoSearch()
 	{
-		Debug.Log($"search started for {eatDuration}s");
+		// Debug.Log($"search started for {eatDuration}s");
 		isSearching = true;
 		searchElapsed = 0f;
 	}
 
 	private void OnEndSearch()
 	{
-		Debug.Log($"search finished");
+		// Debug.Log($"search finished");
 		if (isEating) return;
 		isSearching = false;
 		patrolMechanic.enabled = true;

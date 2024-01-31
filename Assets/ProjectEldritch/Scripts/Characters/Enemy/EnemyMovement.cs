@@ -42,13 +42,13 @@ public class EnemyMovement : MonoBehaviour
 
 	public void DoPatrol()
 	{
-		Debug.Log($"enemy {this.name} back to patrol");
+		// Debug.Log($"enemy {this.name} back to patrol");
 		isChasing = false;
 	}
 
 	public void StopMovement()
 	{
-		Debug.Log($"enemy {this.name} stopped moving");
+		// Debug.Log($"enemy {this.name} stopped moving");
 		isChasing = false;
 	}
 }

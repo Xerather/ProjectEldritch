@@ -87,5 +87,7 @@ public class Player : Characters
 	private void UsePowerUp(PowerUpSO powerUp)
 	{
 		playerStatus.AddStats(powerUp.additionalStatus);
+		onHpUpdateChannel.RaiseEvent(playerStatus.hp, playerStatus.maxHp);
+		onSanityUpdateChannel.RaiseEvent(playerStatus.sanity, playerStatus.maxSanity);
 	}
 }

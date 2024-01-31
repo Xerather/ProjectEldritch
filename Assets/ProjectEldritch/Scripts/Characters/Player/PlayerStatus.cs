@@ -27,7 +27,6 @@ public class PlayerStatus
 		maxSanity += status.maxSanity;
 
 		hp = MathF.Min(hp + status.hp, maxHp);
-		Debug.Log($"sanity + status.sanity = {sanity + status.sanity} | maxSanity = {maxSanity}");
 		sanity = MathF.Min(sanity + status.sanity, maxSanity);
 
 		moveSpeed += status.moveSpeed;
