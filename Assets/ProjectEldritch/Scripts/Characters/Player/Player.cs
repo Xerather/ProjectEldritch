@@ -19,8 +19,6 @@ public class Player : Characters
 	void OnEnable()
 	{
 		onPowerUpUseChannel.RegisterListener(UsePowerUp);
-		// onItemAddChannel.RegisterListener(AddItem);
-		// onItemUseChannel.RegisterListener(ConsumeItem);
 	}
 
 	void OnDisable()

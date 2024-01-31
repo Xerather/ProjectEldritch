@@ -11,7 +11,7 @@ public class FloorTorch : MonoBehaviour
 	void Start()
 	{
 		timeElapsed = 0;
-		onTorchSpawnChannel.RaiseEvent(torch.lightDuration, transform);
+		// onTorchSpawnChannel.RaiseEvent(torch.lightDuration, transform);
 	}
 
 	// Update is called once per frame
