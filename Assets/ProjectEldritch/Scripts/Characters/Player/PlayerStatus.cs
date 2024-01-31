@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class PlayerStatus : Characters
+[Serializable]
+public class PlayerStatus
 {
-	[SerializeField] private FloatEventChannelSO playerHpChannel;
-	private void OnCollisionEnter2D(Collision2D col)
-	{
-		if (col.gameObject.CompareTag("Enemy"))
-		{
-			Debug.Log("<color=red>Player hit!</color>");
-			currentHp--;
-			playerHpChannel.RaiseEvent(currentHp);
-		}
-	}
+	public int maxHp;
+	public int hp;
+	public float moveSpeed;
+	public int inventorySize;
+	[Header("Light parameter")]
+	public float onInnerRadius;
+	public float onOuterRadius;
+	public float offInnerRadius;
+	public float offOuterRadius;
 }

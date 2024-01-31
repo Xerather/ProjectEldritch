@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class FloorTorch : MonoBehaviour
 {
-	[SerializeField] LightSourceSO torch;
+	[SerializeField] private LightSourceSO torch;
+	[SerializeField] private TorchEventChannelSO onTorchSpawnChannel;
 	private float timeElapsed;
 
 	void Start()
 	{
 		timeElapsed = 0;
+		onTorchSpawnChannel.RaiseEvent(torch.lightDuration, transform);
 	}
 
 	// Update is called once per frame

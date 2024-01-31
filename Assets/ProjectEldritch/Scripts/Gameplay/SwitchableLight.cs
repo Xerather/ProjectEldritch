@@ -8,12 +8,13 @@ public class SwitchableLight : MonoBehaviour
 	[SerializeField] private Light2D light2d;
 	[SerializeField] private GameObject fireObj;
 	[SerializeField] private bool litOnStart = true;
+	[SerializeField] private TooltipEventChannelSO tooltipMoverChannel;
 	private bool inRange = false;
 
 	void Start()
 	{
-
-		SwitchLight();
+		light2d.enabled = litOnStart;
+		fireObj?.SetActive(litOnStart);
 	}
 
 	void Update()
@@ -33,13 +34,15 @@ public class SwitchableLight : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collider)
 	{
 		if (!collider.gameObject.CompareTag("Player")) return;
+		tooltipMoverChannel.RaiseEvent(true, this.transform);
 		inRange = true;
 	}
 
 	private void OnTriggerExit2D(Collider2D collider)
 	{
-
 		if (!collider.gameObject.CompareTag("Player")) return;
+
+		tooltipMoverChannel.RaiseEvent(false, this.transform);
 		inRange = false;
 	}
 }

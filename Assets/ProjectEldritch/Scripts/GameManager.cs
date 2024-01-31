@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance;
 	[SerializeField] private FloatEventChannelSO playerHpChannel;
 	[SerializeField] private GameObject gameOverPanel;
+	[SerializeField] private InventorySO inventorySO;
+
+	[Header("GameStats")]
+	public float torch;
+	public float hp;
 
 	private void Awake()
 	{

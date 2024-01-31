@@ -5,7 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/Data/Character")]
 public class CharactersSO : ScriptableObject
 {
-	public float maxHp;
-	public float moveSpeed;
-
+	public string charName;
 }

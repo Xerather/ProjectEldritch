@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Pathfinding;
 
 public class FOVMechanic : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class FOVMechanic : MonoBehaviour
 	public Color patrolColor = new Color(0.0f, 0.0f, 0.0f, 150.0f);
 	public Color spottedColor = new Color(255.0f, 0.0f, 0.0f, 150.0f);
 	public bool playerBlockView;
+	public AIDestinationSetter aIDestinationSetter;
 
 	[Header("Events")]
 	public UnityEvent OnSpottedEnter;
@@ -28,13 +30,15 @@ public class FOVMechanic : MonoBehaviour
 	private Material material;
 	private Transform visiblePlayer;
 	private bool previousSpotted;
+	private Transform lastSpottedTransform;
+	public GameObject fovChild;
 
 	public GameObject _spottedPlayer { get { return spottedPlayer; } }
 
 	//Creating a child object with the FOVGraphic script to actually display the FOV and getting a refrence to the material
 	private void Awake()
 	{
-		GameObject fovChild = Instantiate(Resources.Load("FOV") as GameObject, transform);
+		fovChild = Instantiate(Resources.Load("FOV") as GameObject, transform);
 		material = fovChild.GetComponent<MeshRenderer>().material;
 	}
 
@@ -49,6 +53,10 @@ public class FOVMechanic : MonoBehaviour
 	{
 		if (spottedPlayer != null)
 		{
+			aIDestinationSetter.target = spottedPlayer.transform;
+			aIDestinationSetter.useTargetVector = false;
+			lastSpottedTransform = spottedPlayer.transform;
+
 			material.color = spottedColor;
 
 			if (!previousSpotted)
@@ -60,6 +68,9 @@ public class FOVMechanic : MonoBehaviour
 		}
 		else
 		{
+			if (lastSpottedTransform != null) aIDestinationSetter.targetVector = lastSpottedTransform.position;
+			aIDestinationSetter.useTargetVector = true;
+
 			material.color = patrolColor;
 
 			if (previousSpotted)

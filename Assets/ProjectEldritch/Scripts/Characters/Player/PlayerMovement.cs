@@ -1,22 +1,14 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+	[SerializeField] private Player player;
 	[SerializeField] private float rotationSpeed;
-	[SerializeField] private Rigidbody2D rb;
 	[Header("Debug")]
 	[SerializeField] private Vector2 moveDirection;
-	[SerializeField] private Light2D playerLight;
-	[Header("Light parameter")]
-	[SerializeField] private float onInnerRadius;
-	[SerializeField] private float onOuterRadius;
-	[SerializeField] private float offInnerRadius, offOuterRadius;
-
-	public float moveSpeed;
-	private bool lightOn = true;
-	public bool isPlayerVisible => lightOn;
+	private PlayerStatus playerStatus => player.playerStatus;
+	public Rigidbody2D rb;
+	public float moveSpeed => playerStatus.moveSpeed;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -27,19 +19,6 @@ public class PlayerMovement : MonoBehaviour
 	void Update()
 	{
 		MovementInputs();
-
-		if (Input.GetKeyDown(KeyCode.F))
-		{
-			lightOn = !lightOn;
-
-			playerLight.pointLightInnerRadius = lightOn ? onInnerRadius : offInnerRadius;
-			playerLight.pointLightOuterRadius = lightOn ? onOuterRadius : offOuterRadius;
-		}
-
-		if (Input.GetKeyDown(KeyCode.Mouse0))
-		{
-
-		}
 	}
 
 	void FixedUpdate()

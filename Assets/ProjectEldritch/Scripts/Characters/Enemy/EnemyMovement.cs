@@ -7,33 +7,17 @@ public class EnemyMovement : MonoBehaviour
 {
 	[SerializeField] private AIPath aIPath;
 	[SerializeField] private Vector2 directions;
-	[SerializeField] private float searchDuration;
 	private FOVMechanic fov;
-	private bool isChasing;
-	private bool isSearching;
-	private float searchElapsed;
+	[SerializeField] private bool isChasing;
 
 	void Awake()
 	{
 		fov = GetComponent<FOVMechanic>();
-		// fov.OnSpottedPlayer += UpdatePlayer;
-	}
-	void Update()
-	{
-		if (isSearching)
-		{
-			searchElapsed += Time.deltaTime;
-
-			if (searchElapsed > searchDuration)
-			{
-				BackToPatrol();
-			}
-		}
 	}
 
 	void LateUpdate()
 	{
-		if (isSearching || isChasing)
+		if (isChasing)
 		{
 			FaceVelocity();
 		}
@@ -45,24 +29,26 @@ public class EnemyMovement : MonoBehaviour
 		transform.right = directions;
 	}
 
-	public void PlayerDetectEnter()
+	public void PlayerSpottedEnter()
 	{
-		Debug.Log($"player detected, enemy {this.name} chasing");
-		isSearching = false;
+		// Debug.Log($"player detected, enemy {this.name} chasing");
 		isChasing = true;
 	}
 
-	public void PlayerDetectExit()
+	public void PlayerSpottedExit()
 	{
-		Debug.Log($"player lost, enemy {this.name} searching...");
-		isSearching = true;
-		searchElapsed = 0f;
+		// Debug.Log($"player lost, enemy {this.name} searching for player...");
 	}
 
-	private void BackToPatrol()
+	public void DoPatrol()
 	{
 		Debug.Log($"enemy {this.name} back to patrol");
-		isSearching = false;
+		isChasing = false;
+	}
+
+	public void StopMovement()
+	{
+		Debug.Log($"enemy {this.name} stopped moving");
 		isChasing = false;
 	}
 }

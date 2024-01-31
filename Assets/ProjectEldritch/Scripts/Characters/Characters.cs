@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Characters : MonoBehaviour
 {
-	[SerializeField] protected CharactersSO characterSO;
-	[SerializeField] protected PlayerMovement playerMovement;
-	protected float currentHp;
 	protected Vector3 spawnPos;
 	protected virtual void Start()
 	{
@@ -17,7 +14,7 @@ public class Characters : MonoBehaviour
 	private void Reset()
 	{
 		transform.position = spawnPos;
-		currentHp = characterSO.maxHp;
-		playerMovement.moveSpeed = characterSO.moveSpeed;
+		// currentHp = characterSO.maxHp;
+		// playerMovement.moveSpeed = characterSO.moveSpeed;
 	}
 }
