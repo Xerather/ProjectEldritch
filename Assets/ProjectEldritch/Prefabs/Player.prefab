@@ -194,8 +194,8 @@ MonoBehaviour:
   playerStatus:
     maxHp: 3
     hp: 3
-    maxSanity: 100
-    sanity: 100
+    maxSanity: 30
+    sanity: 30
     moveSpeed: 4
     inventorySize: 3
     onInnerRadius: 1.5
