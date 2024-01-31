@@ -26,5 +26,6 @@ public class SwitchableLight : InteractableObject
 	{
 		light2d.enabled = !light2d.enabled;
 		fireObj?.SetActive(light2d.enabled);
+		if (light2d.enabled) sfx.Play();
 	}
 }
