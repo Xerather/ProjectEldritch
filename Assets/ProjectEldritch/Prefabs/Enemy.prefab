@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3030858529915166013}
   - component: {fileID: 3030858529915166012}
+  - component: {fileID: 263110961736114589}
   - component: {fileID: 3030858529915166014}
   - component: {fileID: 3030858529915165984}
   - component: {fileID: 3030858529915166009}
@@ -93,6 +94,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &263110961736114589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030858529915165987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6715b9f09f751c348bbaa8590f63d5ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 4f4ea84d92180ac42b7ee50978836a31, type: 2}
+  enemyMovement: {fileID: 3030858529915165984}
+  patrolMechanic: {fileID: 3030858529915166006}
+  aiDestinationSetter: {fileID: 3030858529915166010}
+  fOVMechanic: {fileID: 3030858529915166009}
 --- !u!58 &3030858529915166014
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -123,7 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aIPath: {fileID: 3030858529915166011}
   directions: {x: 0, y: 0}
-  searchDuration: 3
 --- !u!114 &3030858529915166009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,36 +164,13 @@ MonoBehaviour:
   patrolColor: {r: 0.07456982, g: 1, b: 0, a: 0.039215688}
   spottedColor: {r: 0.7490196, g: 0, b: 0, a: 0.48235294}
   playerBlockView: 0
+  aIDestinationSetter: {fileID: 3030858529915166010}
   OnSpottedEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3030858529915166006}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3030858529915166010}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 3030858529915165984}
-        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
-        m_MethodName: PlayerDetectEnter
+      - m_Target: {fileID: 263110961736114589}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: OnSpotEnter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -184,41 +178,14 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   OnSpottedStay:
     m_PersistentCalls:
-      m_Calls: []
-  OnSpottedExit:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3030858529915166006}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 3030858529915166010}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3030858529915165984}
-        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
-        m_MethodName: PlayerDetectExit
+      - m_Target: {fileID: 263110961736114589}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: OnSpotStay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -228,6 +195,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnSpottedExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 263110961736114589}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: OnSpotExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  fovChild: {fileID: 0}
 --- !u!114 &3030858529915166006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +297,7 @@ MonoBehaviour:
   endReachedDistance: 2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
+  whenCloseToDestination: 1
   constrainInsideGraph: 0
 --- !u!114 &3030858529915166010
 MonoBehaviour:
@@ -330,6 +313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+  useTargetVector: 0
+  targetVector: {x: 0, y: 0, z: 0}
 --- !u!50 &3030858529915166007
 Rigidbody2D:
   serializedVersion: 4
