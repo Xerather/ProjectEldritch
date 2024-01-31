@@ -10,6 +10,7 @@ public class Enemy : Characters
 	[SerializeField] private PatrolMechanic patrolMechanic;
 	[SerializeField] private AIDestinationSetter aiDestinationSetter;
 	[SerializeField] private FOVMechanic fOVMechanic;
+	[SerializeField] private SoundMaker soundMaker;
 	private float eatDuration => enemySO.eatDuration;
 	private float searchDuration => enemySO.searchDuration;
 	private float eatElapsed;
@@ -65,6 +66,7 @@ public class Enemy : Characters
 	private void DoChase()
 	{
 		if (isEating) return;
+		if (!isSearching) soundMaker.PlaySfx("growl");
 		patrolMechanic.enabled = false;
 		aiDestinationSetter.enabled = true;
 	}
@@ -74,6 +76,7 @@ public class Enemy : Characters
 
 		// Debug.Log($"eating started for {eatDuration}s");
 		isEating = true;
+		soundMaker.PlaySfx("hit");
 		patrolMechanic.enabled = false;
 		fOVMechanic.enabled = false;
 

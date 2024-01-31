@@ -183,8 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a1f0ee8265fbb4997f60f6d2615431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltipMoverChannel: {fileID: 11400000, guid: 9a563f26b1b37b44dab91909733f0c0a, type: 2}
+  sfx: {fileID: 0}
   itemSlot:
     itemSO: {fileID: 11400000, guid: 25124f614619bbc4d87670e31c1a5f0f, type: 2}
     qty: 1
-  tooltipMoverChannel: {fileID: 11400000, guid: 9a563f26b1b37b44dab91909733f0c0a, type: 2}
   onItemGetChannel: {fileID: 11400000, guid: 29c58db2571ea7642b5c7de3c817ccde, type: 2}
+  dummyAudioSource: {fileID: 5353314642283358565, guid: 8860b0c0b3da00142b6dae0770fce774, type: 3}

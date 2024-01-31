@@ -9,6 +9,7 @@ public class EndDoor : InteractableObject
 
 	protected override void TriggerInteraction()
 	{
+		sfx.Play();
 		bool canUse = player.ConsumeItem(itemSO);
 		Debug.Log("have key " + itemSO.name + " in inventory ? " + canUse);
 		if (!canUse) return;

@@ -8,6 +8,7 @@ public class Player : Characters
 	[SerializeField] private FloatEventChannelSO onHpUpdateChannel;
 	[SerializeField] private FloatEventChannelSO onSanityUpdateChannel;
 	[SerializeField] private PowerUpEventChannelSO onPowerUpUseChannel;
+	[SerializeField] private SoundMaker soundMaker;
 
 	public PlayerStatus playerStatus;
 	[SerializeField] private Light2D playerLight;
@@ -36,8 +37,9 @@ public class Player : Characters
 
 		if (Input.GetKeyDown(KeyCode.F))
 		{
-			isSelfLight = !isSelfLight;
 
+			isSelfLight = !isSelfLight;
+			if (isSelfLight) soundMaker.PlaySfx("matchstick");
 			playerLight.pointLightInnerRadius = isSelfLight ? playerStatus.onInnerRadius : playerStatus.offInnerRadius;
 			playerLight.pointLightOuterRadius = isSelfLight ? playerStatus.onOuterRadius : playerStatus.offOuterRadius;
 		}

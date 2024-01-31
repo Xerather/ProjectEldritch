@@ -6,6 +6,7 @@ public class TreasureChest : InteractableObject
 {
 	[SerializeField] private ItemSlot itemSlot;
 	[SerializeField] private ItemEventChannelSO onItemGetChannel;
+	[SerializeField] private GameObject dummyAudioSource;
 
 	protected override void TriggerInteraction()
 	{
@@ -15,6 +16,8 @@ public class TreasureChest : InteractableObject
 
 	private void GetItem()
 	{
+		Instantiate(dummyAudioSource);
+
 		onItemGetChannel.RaiseEvent(itemSlot.itemSO, itemSlot.qty);
 		Destroy(this.gameObject);
 	}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour
 {
 	[SerializeField] protected TooltipEventChannelSO tooltipMoverChannel;
+	[SerializeField] protected AudioSource sfx;
 	protected bool inRange = false;
 
 	protected virtual void Start() { }
