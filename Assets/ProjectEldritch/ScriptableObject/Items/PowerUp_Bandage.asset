@@ -16,7 +16,7 @@ MonoBehaviour:
   inventorySprite: {fileID: 21300000, guid: 946962692ed7e684f8b52a964f9bbf3d, type: 3}
   additionalStatus:
     maxHp: 0
-    hp: 1
+    hp: 3
     maxSanity: 0
     sanity: 0
     moveSpeed: 0

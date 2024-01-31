@@ -18,7 +18,7 @@ MonoBehaviour:
     maxHp: 0
     hp: 0
     maxSanity: 0
-    sanity: 10
+    sanity: 20
     moveSpeed: 0
     inventorySize: 0
     onInnerRadius: 0
