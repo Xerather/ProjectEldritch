@@ -4,8 +4,10 @@ using System;
 [Serializable]
 public class PlayerStatus
 {
-	public int maxHp;
-	public int hp;
+	public float maxHp;
+	public float hp;
+	public float maxSanity;
+	public float sanity;
 	public float moveSpeed;
 	public int inventorySize;
 	[Header("Light parameter")]

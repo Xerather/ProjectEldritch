@@ -187,10 +187,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c78e09cf61fe44e91ae34d80f1fa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHpChannel: {fileID: 11400000, guid: 8433e3c9f5fde3a42882a0b18cd47d39, type: 2}
+  onHpUpdateChannel: {fileID: 11400000, guid: 8433e3c9f5fde3a42882a0b18cd47d39, type: 2}
+  onSanityUpdateChannel: {fileID: 11400000, guid: c1181851024d32449ab05a1ba89e7250, type: 2}
+  onItemAddChannel: {fileID: 0}
+  onItemUseChannel: {fileID: 0}
   playerStatus:
     maxHp: 3
     hp: 3
+    maxSanity: 100
+    sanity: 100
     moveSpeed: 4
     inventorySize: 3
     onInnerRadius: 1.5
@@ -201,6 +206,7 @@ MonoBehaviour:
   isSelfLight: 1
   isOnLight: 0
   playerMovement: {fileID: 1224239835353479775}
+  inventorySO: {fileID: 0}
 --- !u!114 &1224239835353479775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +273,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   torch: {fileID: 8194006708952436722, guid: 223a6ee82cc2fd04e8d03c52eebd50d7, type: 3}
+  throwableTorchSO: {fileID: 11400000, guid: 25124f614619bbc4d87670e31c1a5f0f, type: 2}
   torchHolder: {fileID: 0}
+  player: {fileID: 4814510929558352941}
 --- !u!1001 &5226017835303629004
 PrefabInstance:
   m_ObjectHideFlags: 0

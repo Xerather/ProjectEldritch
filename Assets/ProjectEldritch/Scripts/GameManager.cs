@@ -5,13 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager instance;
-	[SerializeField] private FloatEventChannelSO playerHpChannel;
+	[SerializeField] private FloatEventChannelSO onHpUpdateChannel;
+	[SerializeField] private FloatEventChannelSO onSanityUpdateChannel;
 	[SerializeField] private GameObject gameOverPanel;
-	[SerializeField] private InventorySO inventorySO;
-
-	[Header("GameStats")]
-	public float torch;
-	public float hp;
 
 	private void Awake()
 	{
@@ -19,12 +15,28 @@ public class GameManager : MonoBehaviour
 	}
 	private void OnEnable()
 	{
-		playerHpChannel.RegisterListener(GameOver);
+		onHpUpdateChannel.RegisterListener(GameOverHp);
+		onSanityUpdateChannel.RegisterListener(GameOverSanity);
 	}
 
-	private void GameOver(float hp)
+	private void OnDisable()
+	{
+		onHpUpdateChannel.RemoveListener(GameOverHp);
+		onSanityUpdateChannel.RemoveListener(GameOverSanity);
+	}
+
+	private void GameOverHp(float hp, float maxHp)
 	{
 		if (hp > 0) return;
+		else
+		{
+			gameOverPanel.SetActive(true);
+		}
+	}
+
+	private void GameOverSanity(float sanity, float maxSanity)
+	{
+		if (sanity > 0) return;
 		else
 		{
 			gameOverPanel.SetActive(true);

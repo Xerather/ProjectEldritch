@@ -5,15 +5,15 @@ using UnityEngine.UI;
 public class HUDController : MonoBehaviour
 {
 	[SerializeField] private Image hpBar;
-	[SerializeField] private FloatEventChannelSO playerHpChannel;
+	[SerializeField] private FloatEventChannelSO hudChannel;
 
 	private void OnEnable()
 	{
-		playerHpChannel.RegisterListener(UpdateHpBar);
+		hudChannel.RegisterListener(UpdateBar);
 	}
 
-	private void UpdateHpBar(float hp)
+	private void UpdateBar(float value, float maxValue)
 	{
-		hpBar.fillAmount = hp / 3;
+		hpBar.fillAmount = value / maxValue;
 	}
 }

@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e359cbb4af9e8429ace1a2fa7e9bb5, type: 3}
-  m_Name: Enemy_Ghoul
+  m_Script: {fileID: 11500000, guid: 74da8896fb1714b488da89ccb31c958f, type: 3}
+  m_Name: OnItemUseChannel
   m_EditorClassIdentifier: 
-  charName: Ghoul
-  eatDuration: 3
-  searchDuration: 5
