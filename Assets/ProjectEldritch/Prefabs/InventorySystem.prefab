@@ -54,6 +54,9 @@ MonoBehaviour:
   activeInventory: []
   itemBoxPrefab: {fileID: 6639035536859777104, guid: cffd3203ba9e22743afdfc4b88fbfa59, type: 3}
   itemBoxLayoutGroup: {fileID: 4800754756146026249}
+  onPowerUpUseChannel: {fileID: 11400000, guid: 220b0c03abc49e748a096efa91daee5e, type: 2}
+  OnItemUseChannel: {fileID: 11400000, guid: ee396966237758341af73b06b7210e9d, type: 2}
+  OnItemGetChannel: {fileID: 11400000, guid: 29c58db2571ea7642b5c7de3c817ccde, type: 2}
 --- !u!1 &6570730991877860994
 GameObject:
   m_ObjectHideFlags: 0

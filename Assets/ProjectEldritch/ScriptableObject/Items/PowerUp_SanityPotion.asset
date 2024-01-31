@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Sanity Potion
   inventorySprite: {fileID: 21300000, guid: 557e8b1ec32bd4b449373197768c41b0, type: 3}
-  maxHp: 0
-  hp: 0
-  sanity: 50
-  moveSpeed: 0
-  inventorySize: 0
-  outerRadiusRange: 0
-  innerRadiusRange: 0
+  additionalStatus:
+    maxHp: 0
+    hp: 0
+    maxSanity: 0
+    sanity: 10
+    moveSpeed: 0
+    inventorySize: 0
+    onInnerRadius: 0
+    onOuterRadius: 0
+    offInnerRadius: 0
+    offOuterRadius: 0

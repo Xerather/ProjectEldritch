@@ -7,8 +7,7 @@ public class Player : Characters
 {
 	[SerializeField] private FloatEventChannelSO onHpUpdateChannel;
 	[SerializeField] private FloatEventChannelSO onSanityUpdateChannel;
-	[SerializeField] private ItemEventChannelSO onItemAddChannel;
-	[SerializeField] private ItemEventChannelSO onItemUseChannel;
+	[SerializeField] private PowerUpEventChannelSO onPowerUpUseChannel;
 
 	public PlayerStatus playerStatus;
 	[SerializeField] private Light2D playerLight;
@@ -17,21 +16,22 @@ public class Player : Characters
 	[SerializeField] private PlayerMovement playerMovement;
 	[SerializeField] private InventoryWindow inventorySO;
 	public bool isPlayerVisible => isOnLight || isSelfLight;
-
 	void OnEnable()
 	{
+		onPowerUpUseChannel.RegisterListener(UsePowerUp);
 		// onItemAddChannel.RegisterListener(AddItem);
 		// onItemUseChannel.RegisterListener(ConsumeItem);
 	}
 
 	void OnDisable()
 	{
-
+		onPowerUpUseChannel.RemoveListener(UsePowerUp);
 	}
 	void Update()
 	{
 		if (!isPlayerVisible)
 		{
+			if (playerStatus.sanity < 0) return;
 			playerStatus.sanity -= Time.deltaTime;
 			onSanityUpdateChannel.RaiseEvent(playerStatus.sanity, playerStatus.maxSanity);
 		}
@@ -82,5 +82,10 @@ public class Player : Characters
 	public bool ConsumeItem(ItemSO itemSO, int qty = 1)
 	{
 		return inventorySO.ConsumeItem(itemSO, qty);
+	}
+
+	private void UsePowerUp(PowerUpSO powerUp)
+	{
+		playerStatus.AddStats(powerUp.additionalStatus);
 	}
 }

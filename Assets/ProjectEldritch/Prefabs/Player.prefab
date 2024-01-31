@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onHpUpdateChannel: {fileID: 11400000, guid: 8433e3c9f5fde3a42882a0b18cd47d39, type: 2}
   onSanityUpdateChannel: {fileID: 11400000, guid: c1181851024d32449ab05a1ba89e7250, type: 2}
+  onPowerUpUseChannel: {fileID: 11400000, guid: 220b0c03abc49e748a096efa91daee5e, type: 2}
   onItemAddChannel: {fileID: 0}
   onItemUseChannel: {fileID: 0}
   playerStatus:

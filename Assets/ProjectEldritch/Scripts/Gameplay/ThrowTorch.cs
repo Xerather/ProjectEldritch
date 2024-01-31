@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ThrowTorch : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ThrowTorch : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
+			if (EventSystem.current.IsPointerOverGameObject()) return;
 			if (!player.ConsumeItem(throwableTorchSO)) return;
 
 			Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -18,4 +20,6 @@ public class ThrowTorch : MonoBehaviour
 			Instantiate(torch, pos + offset, Quaternion.identity, torchHolder);
 		}
 	}
+
+
 }

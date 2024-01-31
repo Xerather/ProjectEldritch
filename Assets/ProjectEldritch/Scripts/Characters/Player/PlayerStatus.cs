@@ -15,4 +15,27 @@ public class PlayerStatus
 	public float onOuterRadius;
 	public float offInnerRadius;
 	public float offOuterRadius;
+
+	public void AddStats(PowerUpSO powerUp)
+	{
+		AddStats(powerUp.additionalStatus);
+	}
+
+	public void AddStats(PlayerStatus status)
+	{
+		maxHp += status.maxHp;
+		maxSanity += status.maxSanity;
+
+		hp = MathF.Min(hp + status.hp, maxHp);
+		Debug.Log($"sanity + status.sanity = {sanity + status.sanity} | maxSanity = {maxSanity}");
+		sanity = MathF.Min(sanity + status.sanity, maxSanity);
+
+		moveSpeed += status.moveSpeed;
+		inventorySize += status.inventorySize;
+
+		onInnerRadius += status.onInnerRadius;
+		onOuterRadius += status.onOuterRadius;
+		offInnerRadius += status.offInnerRadius;
+		offOuterRadius += status.offOuterRadius;
+	}
 }
