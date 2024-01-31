@@ -190,8 +190,6 @@ MonoBehaviour:
   onHpUpdateChannel: {fileID: 11400000, guid: 8433e3c9f5fde3a42882a0b18cd47d39, type: 2}
   onSanityUpdateChannel: {fileID: 11400000, guid: c1181851024d32449ab05a1ba89e7250, type: 2}
   onPowerUpUseChannel: {fileID: 11400000, guid: 220b0c03abc49e748a096efa91daee5e, type: 2}
-  onItemAddChannel: {fileID: 0}
-  onItemUseChannel: {fileID: 0}
   playerStatus:
     maxHp: 3
     hp: 3
@@ -258,8 +256,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.35}
-  m_Size: {x: 1.25, y: 1.84}
+  m_Offset: {x: 0, y: 0.03}
+  m_Size: {x: 1.25, y: 1.52}
   m_Direction: 0
 --- !u!114 &2782430328760300663
 MonoBehaviour:
@@ -298,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6375922986348912931, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 6375922986348912931, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
       propertyPath: m_LocalPosition.z
