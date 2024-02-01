@@ -342,6 +342,7 @@ MonoBehaviour:
   tooltipMoverChannel: {fileID: 11400000, guid: 9a563f26b1b37b44dab91909733f0c0a, type: 2}
   sfx: {fileID: 2346728460042927871}
   light2d: {fileID: 151056994424506407}
+  detection: {fileID: 4990265749555625762}
   fireObj: {fileID: 2307289569353251159}
   litOnStart: 1
 --- !u!1001 &6513187637775427845
@@ -417,3 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &4990265749555625762 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2243779870781756967, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
+  m_PrefabInstance: {fileID: 6513187637775427845}
+  m_PrefabAsset: {fileID: 0}

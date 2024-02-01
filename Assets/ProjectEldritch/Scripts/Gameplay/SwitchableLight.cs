@@ -6,26 +6,26 @@ using UnityEngine.Rendering.Universal;
 public class SwitchableLight : InteractableObject
 {
 	[SerializeField] private Light2D light2d;
+	[SerializeField] private Collider2D detection;
 	[SerializeField] private GameObject fireObj;
 	[SerializeField] private bool litOnStart = true;
-
 	protected override void Start()
 	{
 		base.Start();
-		light2d.enabled = litOnStart;
-		fireObj?.SetActive(litOnStart);
+		SwitchLight(litOnStart);
 	}
 
 	protected override void TriggerInteraction()
 	{
 		base.TriggerInteraction();
-		SwitchLight();
+		SwitchLight(!light2d.enabled);
 	}
 
-	private void SwitchLight()
+	private void SwitchLight(bool isLit)
 	{
-		light2d.enabled = !light2d.enabled;
-		fireObj?.SetActive(light2d.enabled);
-		if (light2d.enabled) sfx.Play();
+		light2d.enabled = isLit;
+		detection.enabled = isLit;
+		fireObj?.SetActive(isLit);
+		if (isLit) sfx.Play();
 	}
 }
