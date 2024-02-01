@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TreasureChest : InteractableObject
 {
-	[SerializeField] private ItemSlot itemSlot;
+	public ItemSlot itemSlot;
 	[SerializeField] private ItemEventChannelSO onItemGetChannel;
 	[SerializeField] private GameObject dummyAudioSource;
 
