@@ -91,4 +91,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onSanityUpdateChannel: {fileID: 11400000, guid: c1181851024d32449ab05a1ba89e7250, type: 2}
   overlay: {fileID: 8180272657611574477}
-  maxAlphaSanity: 100
+  maxAlphaSanity: 50

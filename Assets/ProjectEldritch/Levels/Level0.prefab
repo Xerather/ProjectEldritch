@@ -3142,7 +3142,7 @@ MonoBehaviour:
   - {x: 0.5010599, y: -0.49806228, z: 0}
   m_ShapePathHash: -611565869
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46166
+  m_InstanceId: 59550
 --- !u!1 &3115478932643537032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3957,7 +3957,6 @@ GameObject:
   - component: {fileID: 3115478932787585261}
   - component: {fileID: 2797451625000002539}
   - component: {fileID: 6018554477821208108}
-  - component: {fileID: 7396999348962935700}
   m_Layer: 6
   m_Name: WallTilemap
   m_TagString: Untagged
@@ -5748,19 +5747,6 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &7396999348962935700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3115478932787585263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6396b3e4012ca5842b51e0e8dd877c6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selfShadows: 1
 --- !u!1 &3115478932788400556
 GameObject:
   m_ObjectHideFlags: 0
@@ -9669,7 +9655,7 @@ MonoBehaviour:
   - {x: 3.0000293, y: 10, z: 0}
   m_ShapePathHash: -1295003113
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46230
+  m_InstanceId: 59614
 --- !u!1 &3532532974845644971
 GameObject:
   m_ObjectHideFlags: 0
@@ -9728,7 +9714,7 @@ MonoBehaviour:
   - {x: 2.0000293, y: -11, z: 0}
   m_ShapePathHash: -1119113662
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46222
+  m_InstanceId: 59606
 --- !u!1 &3830548706146031281
 GameObject:
   m_ObjectHideFlags: 0
@@ -9907,7 +9893,7 @@ MonoBehaviour:
   - {x: 6.000029, y: -7, z: 0}
   m_ShapePathHash: 1363607601
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46116
+  m_InstanceId: 59500
 --- !u!1 &7654780187060258390
 GameObject:
   m_ObjectHideFlags: 0
@@ -10142,7 +10128,7 @@ MonoBehaviour:
   - {x: 7.0000296, y: -14, z: 0}
   m_ShapePathHash: 217015293
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46172
+  m_InstanceId: 59556
 --- !u!1 &8561931071644819925
 GameObject:
   m_ObjectHideFlags: 0
@@ -10289,7 +10275,7 @@ MonoBehaviour:
   - {x: -4.999971, y: -1, z: 0}
   m_ShapePathHash: -1505722481
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46114
+  m_InstanceId: 59498
 --- !u!1 &8720306514017211374
 GameObject:
   m_ObjectHideFlags: 0
@@ -10366,7 +10352,7 @@ MonoBehaviour:
   - {x: -8.99997, y: -14, z: 0}
   m_ShapePathHash: 1837116431
   m_Mesh: {fileID: 0}
-  m_InstanceId: 45554
+  m_InstanceId: 58938
 --- !u!1001 &71253126946754138
 PrefabInstance:
   m_ObjectHideFlags: 0

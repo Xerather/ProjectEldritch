@@ -12,6 +12,11 @@ public class TooltipPanel : MonoBehaviour
 		tooltipActivatorChannel.RegisterListener(ActivateTooltip);
 	}
 
+	void OnDisable()
+	{
+		tooltipActivatorChannel.RemoveListener(ActivateTooltip);
+	}
+
 	// Update is called once per frame
 	void ActivateTooltip(bool IsActive, Transform target)
 	{

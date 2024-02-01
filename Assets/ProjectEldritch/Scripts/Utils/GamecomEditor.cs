@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 public class GamecomEditor : Editor
 {
 	[MenuItem("GAMECOM_EDITOR/Active Toggle _`")]
@@ -214,3 +215,4 @@ public class GamecomEditor : Editor
 	}
 
 }
+#endif

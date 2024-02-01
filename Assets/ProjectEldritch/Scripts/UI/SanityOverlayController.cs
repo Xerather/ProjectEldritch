@@ -12,6 +12,10 @@ public class SanityOverlayController : MonoBehaviour
 	{
 		onSanityUpdateChannel.RegisterListener(UpdateOverlay);
 	}
+	void OnDisable()
+	{
+		onSanityUpdateChannel.RemoveListener(UpdateOverlay);
+	}
 
 	private void UpdateOverlay(float currentValue, float maxValue)
 	{

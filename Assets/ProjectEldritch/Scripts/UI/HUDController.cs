@@ -12,6 +12,11 @@ public class HUDController : MonoBehaviour
 		hudChannel.RegisterListener(UpdateBar);
 	}
 
+	private void OnDisable()
+	{
+		hudChannel.RemoveListener(UpdateBar);
+	}
+
 	private void UpdateBar(float value, float maxValue)
 	{
 		hpBar.fillAmount = value / maxValue;
