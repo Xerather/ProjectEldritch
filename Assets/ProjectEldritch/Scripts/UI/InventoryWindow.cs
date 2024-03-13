@@ -11,6 +11,7 @@ public class InventoryWindow : MonoBehaviour
 	[SerializeField] private PowerUpEventChannelSO onPowerUpUseChannel;
 	[SerializeField] private ItemEventChannelSO OnItemUseChannel;
 	[SerializeField] private ItemEventChannelSO OnItemGetChannel;
+	[SerializeField] private GameObject inventoryWindow;
 
 	private List<ItemBox> itemBoxList = new List<ItemBox>();
 
@@ -89,7 +90,7 @@ public class InventoryWindow : MonoBehaviour
 
 	public void AddItem(ItemSO itemSO, int qty = 1)
 	{
-		ItemSlot targetSlot = GetItemSlot(itemSO);
+		ItemSlot targetSlot = GetItemFromInventory(itemSO);
 		if (targetSlot == null)
 		{
 			ItemSlot newSlot = new ItemSlot(itemSO, qty);
@@ -103,14 +104,14 @@ public class InventoryWindow : MonoBehaviour
 		UpdateItemBox();
 	}
 
-	public ItemSlot GetItemSlot(ItemSO itemSO)
+	public ItemSlot GetItemFromInventory(ItemSO itemSO)
 	{
 		return activeInventory.Find((x) => x.itemSO == itemSO);
 	}
 
 	public bool ConsumeItem(ItemSO itemSO, int qty = 1)
 	{
-		ItemSlot targetSlot = GetItemSlot(itemSO);
+		ItemSlot targetSlot = GetItemFromInventory(itemSO);
 		if (targetSlot == null) return false;
 
 		if (targetSlot.qty - qty >= 0)
@@ -139,5 +140,13 @@ public class InventoryWindow : MonoBehaviour
 			onPowerUpUseChannel.RaiseEvent((PowerUpSO)itemBox.itemSO);
 		}
 		ConsumeItem(itemBox.itemSO);
+	}
+
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.I))
+		{
+			inventoryWindow.SetActive(!inventoryWindow.activeInHierarchy);
+		}
 	}
 }

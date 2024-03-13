@@ -6,9 +6,9 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float rotationSpeed;
 	[Header("Debug")]
 	[SerializeField] private Vector2 moveDirection;
-	private PlayerStatus playerStatus => player.playerStatus;
+	private PlayerStats playerStats => player.playerStats;
 	public Rigidbody2D rb;
-	public float moveSpeed => playerStatus.moveSpeed;
+	public float moveSpeed => playerStats.speed;
 	// Start is called before the first frame update
 	void Start()
 	{

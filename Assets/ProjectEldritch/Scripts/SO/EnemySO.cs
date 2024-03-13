@@ -6,6 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/Data/Enemy")]
 public class EnemySO : CharactersSO
 {
-	public float eatDuration;
-	public float searchDuration;
+	public EnemyStats baseEnemyStats;
+
 }

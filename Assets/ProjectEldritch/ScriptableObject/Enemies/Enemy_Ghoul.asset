@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: Enemy_Ghoul
   m_EditorClassIdentifier: 
   charName: Ghoul
-  eatDuration: 3
-  searchDuration: 5
+  baseEnemyStats:
+    maxHp: 0
+    hp: 0
+    atk: 0
+    speed: 0
+    eatDuration: 3
+    searchDuration: 5

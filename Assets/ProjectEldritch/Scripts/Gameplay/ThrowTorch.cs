@@ -12,6 +12,7 @@ public class ThrowTorch : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
+			if (torchHolder == null) return;
 			if (EventSystem.current.IsPointerOverGameObject()) return;
 			if (!player.ConsumeItem(throwableTorchSO)) return;
 

@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Objects/Data/PowerUp")]
 public class PowerUpSO : ItemSO
 {
-	public PlayerStatus additionalStatus;
+	public PlayerStats additionalStats;
 }

@@ -26,9 +26,7 @@ public class FOVMechanic : MonoBehaviour
 	public SpottedPlayer OnSpottedPlayer;
 
 	private GameObject spottedPlayer;
-	private Collider2D[] playerInRadius;
 	private Material material;
-	private Transform visiblePlayer;
 	private bool previousSpotted;
 	private Transform lastSpottedTransform;
 	public GameObject fovChild;
@@ -56,6 +54,7 @@ public class FOVMechanic : MonoBehaviour
 			aIDestinationSetter.target = spottedPlayer.transform;
 			aIDestinationSetter.useTargetVector = false;
 			lastSpottedTransform = spottedPlayer.transform;
+			if (lastSpottedTransform != null) aIDestinationSetter.targetVector = lastSpottedTransform.position;
 
 			material.color = spottedColor;
 
@@ -68,7 +67,6 @@ public class FOVMechanic : MonoBehaviour
 		}
 		else
 		{
-			if (lastSpottedTransform != null) aIDestinationSetter.targetVector = lastSpottedTransform.position;
 			aIDestinationSetter.useTargetVector = true;
 
 			material.color = patrolColor;

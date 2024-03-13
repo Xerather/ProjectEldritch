@@ -6,12 +6,10 @@ using UnityEngine.Rendering.Universal;
 public class Player : Characters
 {
 	[SerializeField] private FloatEventChannelSO onHpUpdateChannel;
-	[SerializeField] private FloatEventChannelSO onSanityUpdateChannel;
 	[SerializeField] private PowerUpEventChannelSO onPowerUpUseChannel;
 	[SerializeField] private SoundMaker soundMaker;
 
-	public PlayerStatus playerStatus;
-	[SerializeField] private Light2D playerLight;
+	public PlayerStats playerStats;
 	[SerializeField] private bool isSelfLight = true;
 	[SerializeField] private bool isOnLight = false;
 	[SerializeField] private PlayerMovement playerMovement;
@@ -30,29 +28,27 @@ public class Player : Characters
 	{
 		if (!isPlayerVisible)
 		{
-			if (playerStatus.sanity < 0) return;
-			playerStatus.sanity -= Time.deltaTime;
-			onSanityUpdateChannel.RaiseEvent(playerStatus.sanity, playerStatus.maxSanity);
+
 		}
 
 		if (Input.GetKeyDown(KeyCode.F))
 		{
-
-			isSelfLight = !isSelfLight;
-			if (isSelfLight) soundMaker.PlaySfx("matchstick");
-			playerLight.pointLightInnerRadius = isSelfLight ? playerStatus.onInnerRadius : playerStatus.offInnerRadius;
-			playerLight.pointLightOuterRadius = isSelfLight ? playerStatus.onOuterRadius : playerStatus.offOuterRadius;
+			DoInteraction();
 		}
 	}
+
+	private void DoInteraction()
+	{
+
+	}
+
 	private void OnCollisionEnter2D(Collision2D col)
 	{
 		if (col.gameObject.CompareTag("Enemy"))
 		{
 			Debug.Log("<color=red>Player hit!</color>");
-			playerStatus.hp--;
-			playerStatus.sanity -= 10;
-			onHpUpdateChannel.RaiseEvent(playerStatus.hp, playerStatus.maxHp);
-			onSanityUpdateChannel.RaiseEvent(playerStatus.sanity, playerStatus.maxSanity);
+			playerStats.hp--;
+			onHpUpdateChannel.RaiseEvent(playerStats.hp, playerStats.maxHp);
 
 			playerMovement.rb.freezeRotation = true;
 			playerMovement.rb.freezeRotation = false;
@@ -86,8 +82,7 @@ public class Player : Characters
 
 	private void UsePowerUp(PowerUpSO powerUp)
 	{
-		playerStatus.AddStats(powerUp.additionalStatus);
-		onHpUpdateChannel.RaiseEvent(playerStatus.hp, playerStatus.maxHp);
-		onSanityUpdateChannel.RaiseEvent(playerStatus.sanity, playerStatus.maxSanity);
+		playerStats.AddStats(powerUp.additionalStats);
+		onHpUpdateChannel.RaiseEvent(playerStats.hp, playerStats.maxHp);
 	}
 }

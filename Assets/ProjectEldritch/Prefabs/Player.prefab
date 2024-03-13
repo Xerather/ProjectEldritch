@@ -463,6 +463,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightSource
       objectReference: {fileID: 0}
+    - target: {fileID: 6375922986348912930, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8349056
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375922986348912930, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97659075
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375922986348912930, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375922986348912930, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375922986348912930, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6375922986348912931, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
       propertyPath: m_RootOrder
       value: 1
