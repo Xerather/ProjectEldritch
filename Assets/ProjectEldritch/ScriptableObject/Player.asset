@@ -9,8 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56d4ece8c67e0b8448747d022510dfbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 06d515afdb56b41479a34eb26bf612dc, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  maxHp: 3
-  moveSpeed: 4
+  charName: 
+  playerStats:
+    maxHp: 5
+    hp: 5
+    atk: 1
+    speed: 3
+    dashCooldown: 5
+    maxDashCounter: 2
+    inventorySize: 3

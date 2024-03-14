@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Light
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX
@@ -43,9 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer 1
+  - name: Background
     uniqueID: 1436667179
     locked: 0
-  - name: New Layer 2
+  - name: Foreground
     uniqueID: 540405493
+    locked: 0
+  - name: GameplayDebug
+    uniqueID: 779981779
     locked: 0

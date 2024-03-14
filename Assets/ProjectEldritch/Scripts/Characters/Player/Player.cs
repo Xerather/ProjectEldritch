@@ -5,16 +5,26 @@ using UnityEngine.Rendering.Universal;
 
 public class Player : Characters
 {
+	[SerializeField] private PlayerSO playerSO;
 	[SerializeField] private FloatEventChannelSO onHpUpdateChannel;
 	[SerializeField] private PowerUpEventChannelSO onPowerUpUseChannel;
 	[SerializeField] private SoundMaker soundMaker;
-
 	public PlayerStats playerStats;
 	[SerializeField] private bool isSelfLight = true;
 	[SerializeField] private bool isOnLight = false;
 	[SerializeField] private PlayerMovement playerMovement;
 	[SerializeField] private InventoryWindow inventorySO;
 	public bool isPlayerVisible => isOnLight || isSelfLight;
+
+	[Header("VFX")]
+	[SerializeField] private GameObject vfx_slash;
+	[SerializeField] private Transform slashPosition;
+
+	void Awake()
+	{
+		playerStats = new PlayerStats(playerSO.playerStats);
+	}
+
 	void OnEnable()
 	{
 		onPowerUpUseChannel.RegisterListener(UsePowerUp);
@@ -26,20 +36,25 @@ public class Player : Characters
 	}
 	void Update()
 	{
-		if (!isPlayerVisible)
-		{
+		HandleSlash();
+	}
 
-		}
-
-		if (Input.GetKeyDown(KeyCode.F))
+	private void HandleSlash()
+	{
+		if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
-			DoInteraction();
+			SpawnSlash();
 		}
 	}
 
 	private void DoInteraction()
 	{
+		//interact
+	}
 
+	private void SpawnSlash()
+	{
+		Instantiate(vfx_slash, slashPosition);
 	}
 
 	private void OnCollisionEnter2D(Collision2D col)

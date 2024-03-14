@@ -17,4 +17,20 @@ public class Characters : MonoBehaviour
 		// currentHp = characterSO.maxHp;
 		// playerMovement.moveSpeed = characterSO.moveSpeed;
 	}
+
+	protected void CharacterDie()
+	{
+		PlayDeathAnimation();
+		DestroySelf();
+	}
+
+	protected void PlayDeathAnimation()
+	{
+		//play death animation
+	}
+
+	protected void DestroySelf()
+	{
+		Destroy(gameObject);
+	}
 }

@@ -3,6 +3,10 @@ using System;
 [Serializable]
 public class PlayerStats : BaseStats
 {
+	public const float DASH_SPEED = 10f;
+	public const float DASH_DURATION = .5f;
+	public float dashCooldown;
+	public float maxDashCounter;
 	public int inventorySize;
 
 	public void AddStats(PowerUpSO powerUp)
@@ -22,6 +26,8 @@ public class PlayerStats : BaseStats
 
 	public PlayerStats(PlayerStats stats) : base(stats)
 	{
-
+		dashCooldown = stats.dashCooldown;
+		maxDashCounter = stats.maxDashCounter;
+		inventorySize = stats.inventorySize;
 	}
 }
