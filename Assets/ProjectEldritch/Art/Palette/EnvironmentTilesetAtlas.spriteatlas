@@ -82,6 +82,7 @@ SpriteAtlas:
   - {fileID: -980589102, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: -1813848924, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: -1244126012, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
+  - {fileID: 1322261797, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: 1629471268, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: 1441319072, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: 1819267420, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
@@ -102,8 +103,10 @@ SpriteAtlas:
   - {fileID: -1044572908, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: 590070932, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: 96206437, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
+  - {fileID: 1348718560, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: 899930133, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: 1021321428, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
+  - {fileID: 1232492260, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: -449788605, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: -2008915396, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: 1944981405, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
@@ -175,6 +178,10 @@ SpriteAtlas:
   - {fileID: 756774562, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: -1508291252, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   - {fileID: 1444706827, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
+  - {fileID: -2131162912, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
+  - {fileID: -1261053665, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
+  - {fileID: -1244968931, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
+  - {fileID: -1241624440, guid: 725d731a6a53e474a8d9a90cca27a831, type: 3}
   m_PackedSpriteNamesToIndex:
   - EnvironmentTileset_96
   - EnvironmentTileset_97
@@ -220,6 +227,7 @@ SpriteAtlas:
   - EnvironmentTileset_125
   - EnvironmentTileset_126
   - EnvironmentTileset_127
+  - EnvironmentTileset_137
   - EnvironmentTileset_120
   - EnvironmentTileset_136
   - EnvironmentTileset_121
@@ -240,8 +248,10 @@ SpriteAtlas:
   - EnvironmentTileset_118
   - EnvironmentTileset_103
   - EnvironmentTileset_100
+  - EnvironmentTileset_139
   - EnvironmentTileset_101
   - EnvironmentTileset_115
+  - EnvironmentTileset_138
   - EnvironmentTileset_106
   - EnvironmentTileset_114
   - EnvironmentTileset_107
@@ -313,6 +323,10 @@ SpriteAtlas:
   - EnvironmentTileset_40
   - EnvironmentTileset_43
   - EnvironmentTileset_42
+  - EnvironmentTileset_142
+  - EnvironmentTileset_143
+  - EnvironmentTileset_140
+  - EnvironmentTileset_141
   m_RenderDataMap: {}
   m_Tag: EnvironmentTilesetAtlas
   m_IsVariant: 0
