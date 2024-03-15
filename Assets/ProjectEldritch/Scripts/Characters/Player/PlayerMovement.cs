@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			if (dashDurationCounter <= 0 && dashCounter > 0)
 			{
-				moveSpeed = PlayerStats.DASH_SPEED;
+				moveSpeed = playerStats.dashSpeed;
 				dashDurationCounter = PlayerStats.DASH_DURATION;
 				dashCounter--;
 			}

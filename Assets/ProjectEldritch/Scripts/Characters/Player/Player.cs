@@ -25,10 +25,13 @@ public class Player : Characters
 
 	[Header("Teleport")]
 	[SerializeField] private Teleporter teleporter = null;
+	[SerializeField] private Transform jumpPosition;
 	private bool canTeleport => teleporter != null;
+	private FloorLevelManager floorLevelManager;
 	void Awake()
 	{
 		playerStats = new PlayerStats(playerSO.playerStats);
+		floorLevelManager = FindObjectOfType<FloorLevelManager>();
 	}
 
 	void OnEnable()
@@ -64,12 +67,28 @@ public class Player : Characters
 		{
 			if (canTeleport) DoTeleport();
 		}
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			if (currentFloorLevel > 0)
+			{
+				DoJump();
+			}
+		}
 	}
 
 	private void DoTeleport()
 	{
+		if (!floorLevelManager.MoveFloorLevel(currentFloorLevel, teleporter)) return;
 		transform.position = teleporter.targetSpawner.position;
-		teleporter.ChangeMapOpacity();
+		currentFloorLevel = teleporter.targetFloorLevel;
+	}
+
+	private void DoJump()
+	{
+		if (!floorLevelManager.MoveFloorLevel(currentFloorLevel, currentFloorLevel - 1)) return;
+		transform.position = jumpPosition.position;
+		currentFloorLevel--;
 	}
 
 	private void SpawnSlash()
@@ -94,7 +113,6 @@ public class Player : Characters
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		Debug.Log("enter");
 		if (col.gameObject.CompareTag("Teleporter"))
 		{
 			teleporter = col.GetComponent<Teleporter>();

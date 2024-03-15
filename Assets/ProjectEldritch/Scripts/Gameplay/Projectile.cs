@@ -40,8 +40,8 @@ public class Projectile : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		if (UnaffectedTagList.Contains(col.tag)) return;
-		DestroySelf();
+		// if (UnaffectedTagList.Contains(col.tag)) return;
+		// DestroySelf();
 	}
 
 	private void OnCollisionEnter2D(Collision2D col)

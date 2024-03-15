@@ -5,6 +5,7 @@ using UnityEngine;
 public class Characters : MonoBehaviour
 {
 	protected Vector3 spawnPos;
+	public int currentFloorLevel;
 	protected virtual void Start()
 	{
 		spawnPos = transform.position;

@@ -28,4 +28,9 @@ public class Enemy : Characters
 			CharacterDie();
 		}
 	}
+
+	public void GetAssasinated()
+	{
+		GetHit(enemyStats.hp);
+	}
 }

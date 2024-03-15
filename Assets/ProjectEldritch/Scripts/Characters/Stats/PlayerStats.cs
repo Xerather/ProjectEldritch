@@ -3,9 +3,9 @@ using System;
 [Serializable]
 public class PlayerStats : BaseStats
 {
-	public const float DASH_SPEED = 10f;
 	public const float DASH_DURATION = .5f;
 	public float dashCooldown;
+	public float dashSpeed;
 	public float maxDashCounter;
 	public int inventorySize;
 
