@@ -5,8 +5,10 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private Player player;
 	[SerializeField] private float rotationSpeed;
 	[Header("Debug")]
-	[SerializeField] private Vector2 moveDirection;
-	public Rigidbody2D rb;
+	[SerializeField] public Vector2 moveDirection;
+	[SerializeField] private Vector3 mousePosition;
+	public Rigidbody2D playerRb;
+	[SerializeField] public Transform faceDirection;
 	private PlayerStats playerStats => player.playerStats;
 	private float moveSpeed;
 
@@ -14,20 +16,22 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float dashCooldown = 0;
 	[SerializeField] private float dashDurationCounter = 0;
 	[SerializeField] private float dashCounter;
-	[SerializeField] private TrailRenderer tr;
+	[SerializeField] private TrailRenderer trailRenderer;
 	// Start is called before the first frame update
 	void Start()
 	{
-		tr.emitting = false;
+		trailRenderer.emitting = false;
 		moveSpeed = playerStats.speed;
 		dashCounter = playerStats.maxDashCounter;
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		MovementInputs();
 		Dash();
+
+
+		mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 	}
 
 	void FixedUpdate()
@@ -51,6 +55,10 @@ public class PlayerMovement : MonoBehaviour
 
 		moveDirection.Normalize();
 	}
+	private void Move()
+	{
+		playerRb.velocity = moveDirection * moveSpeed;
+	}
 
 	private void Dash()
 	{
@@ -67,10 +75,10 @@ public class PlayerMovement : MonoBehaviour
 		if (dashDurationCounter > 0)
 		{
 			dashDurationCounter -= Time.deltaTime;
-			tr.emitting = true;
+			trailRenderer.emitting = true;
 			if (dashDurationCounter <= 0)
 			{
-				tr.emitting = false;
+				trailRenderer.emitting = false;
 				moveSpeed = playerStats.speed;
 			}
 		}
@@ -92,17 +100,17 @@ public class PlayerMovement : MonoBehaviour
 
 	private void RotateDirection()
 	{
+		Vector3 direction = mousePosition - player.transform.position;
+
+		float aimAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+		faceDirection.rotation = Quaternion.Euler(0, 0, aimAngle);
+
 		if (moveDirection != Vector2.zero)
 		{
-			Quaternion targetRotation = Quaternion.LookRotation(transform.forward, moveDirection);
-			Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+			// Quaternion targetRotation = Quaternion.LookRotation(transform.forward, moveDirection);
+			// Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-			rb.MoveRotation(rotation);
+			// faceDirection.right = moveDirection;
 		}
-	}
-
-	private void Move()
-	{
-		rb.velocity = moveDirection * moveSpeed;
 	}
 }

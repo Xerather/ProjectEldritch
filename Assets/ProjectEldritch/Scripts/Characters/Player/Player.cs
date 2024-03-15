@@ -16,10 +16,16 @@ public class Player : Characters
 	[SerializeField] private InventoryWindow inventorySO;
 	public bool isPlayerVisible => isOnLight || isSelfLight;
 
-	[Header("VFX")]
+	[Header("Slash")]
 	[SerializeField] private GameObject vfx_slash;
 	[SerializeField] private Transform slashPosition;
 
+	[Header("Shuriken")]
+	[SerializeField] private GameObject shurikenPrefab;
+
+	[Header("Teleport")]
+	[SerializeField] private Teleporter teleporter = null;
+	private bool canTeleport => teleporter != null;
 	void Awake()
 	{
 		playerStats = new PlayerStats(playerSO.playerStats);
@@ -36,25 +42,44 @@ public class Player : Characters
 	}
 	void Update()
 	{
-		HandleSlash();
+		HandleInteraction();
+		HandleAttack();
 	}
 
-	private void HandleSlash()
+	private void HandleAttack()
 	{
 		if (Input.GetKeyDown(KeyCode.Mouse0))
 		{
 			SpawnSlash();
 		}
+		if (Input.GetKeyDown(KeyCode.Mouse1))
+		{
+			SpawnShuriken();
+		}
 	}
 
-	private void DoInteraction()
+	private void HandleInteraction()
 	{
-		//interact
+		if (Input.GetKeyDown(KeyCode.F))
+		{
+			if (canTeleport) DoTeleport();
+		}
+	}
+
+	private void DoTeleport()
+	{
+		transform.position = teleporter.targetSpawner.position;
+		teleporter.ChangeMapOpacity();
 	}
 
 	private void SpawnSlash()
 	{
 		Instantiate(vfx_slash, slashPosition);
+	}
+
+	private void SpawnShuriken()
+	{
+		Instantiate(shurikenPrefab, slashPosition.position, playerMovement.faceDirection.rotation);
 	}
 
 	private void OnCollisionEnter2D(Collision2D col)
@@ -64,9 +89,15 @@ public class Player : Characters
 			Debug.Log("<color=red>Player hit!</color>");
 			playerStats.hp--;
 			onHpUpdateChannel.RaiseEvent(playerStats.hp, playerStats.maxHp);
+		}
+	}
 
-			playerMovement.rb.freezeRotation = true;
-			playerMovement.rb.freezeRotation = false;
+	private void OnTriggerEnter2D(Collider2D col)
+	{
+		Debug.Log("enter");
+		if (col.gameObject.CompareTag("Teleporter"))
+		{
+			teleporter = col.GetComponent<Teleporter>();
 		}
 	}
 
@@ -83,6 +114,11 @@ public class Player : Characters
 		if (col.gameObject.CompareTag("Light"))
 		{
 			isOnLight = false;
+		}
+
+		if (col.gameObject.CompareTag("Teleporter"))
+		{
+			teleporter = null;
 		}
 	}
 

@@ -17,7 +17,7 @@ MonoBehaviour:
     maxHp: 5
     hp: 5
     atk: 1
-    speed: 3
+    speed: 10
     dashCooldown: 5
     maxDashCounter: 2
     inventorySize: 3
