@@ -177,7 +177,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3030858529915165987}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -273,10 +273,10 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 128
-  viewRadius: 5
+  viewRadius: 10
   viewAngle: 100
-  patrolColor: {r: 0.07456982, g: 1, b: 0, a: 0.039215688}
-  spottedColor: {r: 0.7490196, g: 0, b: 0, a: 0.48235294}
+  patrolColor: {r: 0.07456982, g: 1, b: 0, a: 0.49803922}
+  spottedColor: {r: 0.7490196, g: 0, b: 0, a: 0.49803922}
   playerBlockView: 0
   aIDestinationSetter: {fileID: 3030858529915166010}
   OnSpottedEnter:
