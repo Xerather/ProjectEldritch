@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7213657677956946939}
   - component: {fileID: 7544826517434302219}
   - component: {fileID: 893063269303661886}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: JumpAssasinationCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,6 +329,7 @@ MonoBehaviour:
     atk: 1
     speed: 4
     dashCooldown: 0
+    dashSpeed: 0
     maxDashCounter: 0
     inventorySize: 0
   isSelfLight: 1

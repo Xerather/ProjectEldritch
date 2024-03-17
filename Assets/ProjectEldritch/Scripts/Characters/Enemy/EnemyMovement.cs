@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
 	private float eatDuration => enemyStats.eatDuration;
 	private float searchDuration => enemyStats.searchDuration;
 	private E_EnemyState enemyState;
+	[SerializeField] private Transform faceDirection;
 
 
 	void Awake()
@@ -58,6 +59,11 @@ public class EnemyMovement : MonoBehaviour
 			}
 		}
 
+	}
+
+	private void FixedUpdate()
+	{
+		RotateDirection();
 	}
 
 	public void StopMovement()
@@ -155,6 +161,11 @@ public class EnemyMovement : MonoBehaviour
 		point.y = 0;
 		point += transform.position;
 		return point;
+	}
+
+	private void RotateDirection()
+	{
+		faceDirection.right = aIPath.desiredVelocity;
 	}
 }
 

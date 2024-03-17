@@ -52,7 +52,8 @@ public class FOVGraphic : MonoBehaviour
 
 			if (hit.collider != null)
 			{
-				bool playerHit = (fov.playerMask.value & 1 << hit.transform.gameObject.layer) > 0 && hit.collider.gameObject.GetComponent<Player>().isPlayerVisible;
+				bool playerHit = (fov.playerMask.value & 1 << hit.transform.gameObject.layer) > 0;
+				// bool playerHit = (fov.playerMask.value & 1 << hit.transform.gameObject.layer) > 0 && hit.collider.gameObject.GetComponent<Player>().isPlayerVisible;
 				viewVertex.Add(transform.position + dir.normalized * ((playerHit && fov.playerBlockView || !playerHit) ? hit.distance : fov.viewRadius));
 
 				if (playerHit)
