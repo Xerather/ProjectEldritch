@@ -17,10 +17,10 @@ MonoBehaviour:
     maxHp: 5
     hp: 5
     atk: 1
-    speed: 5
-    dashDuration: 0.5
-    dashCooldown: 5
-    dashSpeed: 10
+    speed: 7
+    dashDuration: 0.2
+    dashCooldown: 10
+    dashSpeed: 20
     maxDashCounter: 1
     inventorySize: 3
     hitInvicibiltyCooldown: 1.5
