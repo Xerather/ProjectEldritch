@@ -527,7 +527,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 394a4cfe469e0bd4ebff10804959879d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d171e667911a4854ea32e2fc7c0b06a3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.505
   m_Pitch: 1
@@ -683,6 +683,38 @@ PrefabInstance:
     - target: {fileID: 4021463638199458558, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314767604512896978, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    - target: {fileID: 4314767604512896978, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
+      propertyPath: m_Color.a
+      value: 0.32156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314767604512896978, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314767604512896978, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314767604512896978, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861906938920086828, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861906938920086828, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861906938920086828, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ffdff7ea7dd0d04298a793a12ce1b30, type: 3}
@@ -1532,6 +1564,22 @@ PrefabInstance:
     - target: {fileID: 4966177335467716945, guid: 9f498208d230050449b3fb5b50e3c411, type: 3}
       propertyPath: m_Name
       value: Level01_v03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369576202913300574, guid: 9f498208d230050449b3fb5b50e3c411, type: 3}
+      propertyPath: m_CompositePaths.m_Paths.Array.data[0].Array.data[105].y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369576202913300574, guid: 9f498208d230050449b3fb5b50e3c411, type: 3}
+      propertyPath: m_CompositePaths.m_Paths.Array.data[0].Array.data[106].y
+      value: 10.00003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369576202913300574, guid: 9f498208d230050449b3fb5b50e3c411, type: 3}
+      propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.data[104].Y
+      value: 100000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369576202913300574, guid: 9f498208d230050449b3fb5b50e3c411, type: 3}
+      propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.data[105].Y
+      value: 100000000
       objectReference: {fileID: 0}
     - target: {fileID: 5672803300403230534, guid: 9f498208d230050449b3fb5b50e3c411, type: 3}
       propertyPath: m_RootOrder
