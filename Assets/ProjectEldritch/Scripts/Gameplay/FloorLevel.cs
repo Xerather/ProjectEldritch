@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class FloorLevel : MonoBehaviour
 {
-	public int level;
+	public int floorNumber;
 	[SerializeField] private List<Tilemap> tilemapList = new();
 	[SerializeField] private List<TilemapCollider2D> collider2DList = new();
 	void Awake()
@@ -32,9 +32,15 @@ public class FloorLevel : MonoBehaviour
 
 	public void ActivateCollider(bool isActive)
 	{
+		return;
 		foreach (TilemapCollider2D collider2D in collider2DList)
 		{
 			collider2D.enabled = isActive;
 		}
+	}
+
+	public int GetLayerId()
+	{
+		return gameObject.layer;
 	}
 }

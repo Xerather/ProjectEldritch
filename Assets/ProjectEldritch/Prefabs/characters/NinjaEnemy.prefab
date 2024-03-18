@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4889823088920651963}
   - component: {fileID: 4877848748423743093}
   - component: {fileID: 545022761328116209}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6255473142005551426}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: face Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3303815516335861863}
   - component: {fileID: 1862462960170232091}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FOV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   playerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 468916593215275427}
   - component: {fileID: 6825165015227948797}
   - component: {fileID: 3352944495274424759}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3340617401337822039}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: guardDirection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2650186900918361708}
   - component: {fileID: 8423922146126027349}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DebugArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 3754336261167942088}
   - component: {fileID: 892701979158990133}
   - component: {fileID: 4562747282560028078}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 8109632275546683466}
   - component: {fileID: 8109632275546683467}
   - component: {fileID: 2249958334499108011}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 8109632275716590985}
   - component: {fileID: 8109632275716590983}
   - component: {fileID: 3234392978533658537}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NinjaEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6715b9f09f751c348bbaa8590f63d5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentFloorLevel: 0
+  floorNumber: 0
   enemySO: {fileID: 11400000, guid: 4f4ea84d92180ac42b7ee50978836a31, type: 2}
   onEnemyGotHit: {fileID: 11400000, guid: 6688d9a22e3150b4094936554267e62f, type: 2}
   enemyStats:
@@ -823,7 +823,7 @@ GameObject:
   - component: {fileID: 8109632276001111411}
   - component: {fileID: 8109632276001111410}
   - component: {fileID: 8109632276001111409}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +925,7 @@ GameObject:
   - component: {fileID: 8109632276103767976}
   - component: {fileID: 8109632276103767983}
   - component: {fileID: 8109632276103767977}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 8109632276765066451}
   - component: {fileID: 8109632276765066477}
   - component: {fileID: 8109632276765066476}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1119,7 +1119,7 @@ GameObject:
   - component: {fileID: 8109632277212394027}
   - component: {fileID: 8109632277212394021}
   - component: {fileID: 8109632277212394020}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,7 +1194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8109632277496069680}
   - component: {fileID: 8109632277496069681}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1251,7 +1251,7 @@ GameObject:
   - component: {fileID: 2179472516878249278}
   - component: {fileID: 3256627811017877649}
   - component: {fileID: 9178437587197491687}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

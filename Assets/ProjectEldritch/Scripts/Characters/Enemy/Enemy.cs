@@ -23,6 +23,11 @@ public class Enemy : Characters
 		weakSideColliderList = GetComponentsInChildren<WeakSideCollider>();
 	}
 
+	protected override void Start()
+	{
+		base.Start();
+	}
+
 	private bool CheckCanBeHit()
 	{
 		for (int i = 0; i < weakSideColliderList.Length; i++)

@@ -13,15 +13,15 @@ public class FloorLevelManager : MonoBehaviour
 	{
 		foreach (FloorLevel floorLevel in floorLevelList)
 		{
-			floorLevel.ChangeTileMapOpacity(startingLevel >= floorLevel.level);
-			floorLevel.ActivateCollider(floorLevel.level == startingLevel);
+			floorLevel.ChangeTileMapOpacity(startingLevel >= floorLevel.floorNumber);
+			floorLevel.ActivateCollider(floorLevel.floorNumber == startingLevel);
 		}
 	}
 
 	public bool MoveFloorLevel(int currentLevel, int targetLevel)
 	{
-		FloorLevel currentFloorLevel = floorLevelList.Find((x) => x.level == currentLevel);
-		FloorLevel targetFloorLevel = floorLevelList.Find((x) => x.level == targetLevel);
+		FloorLevel currentFloorLevel = floorLevelList.Find((x) => x.floorNumber == currentLevel);
+		FloorLevel targetFloorLevel = floorLevelList.Find((x) => x.floorNumber == targetLevel);
 
 		if (currentFloorLevel == null || targetFloorLevel == null) return false;
 
@@ -35,6 +35,16 @@ public class FloorLevelManager : MonoBehaviour
 
 	public bool MoveFloorLevel(int currentLevel, Teleporter targetTeleporter)
 	{
-		return MoveFloorLevel(currentLevel, targetTeleporter.targetFloorLevel);
+		return MoveFloorLevel(currentLevel, targetTeleporter.targetFloorNumber);
+	}
+
+	public List<FloorLevel> GetFloorLevelList()
+	{
+		return floorLevelList;
+	}
+
+	public FloorLevel GetFloorLevel(int floorLevel)
+	{
+		return floorLevelList.Find((x) => x.floorNumber == floorLevel);
 	}
 }

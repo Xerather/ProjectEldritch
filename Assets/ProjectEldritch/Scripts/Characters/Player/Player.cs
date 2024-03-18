@@ -10,11 +10,9 @@ public class Player : Characters
 	[SerializeField] private PowerUpEventChannelSO onPowerUpUseChannel;
 	[SerializeField] private SoundMaker soundMaker;
 	public PlayerStats playerStats;
-	[SerializeField] private bool isSelfLight = true;
 	[SerializeField] private bool isOnLight = false;
 	[SerializeField] private PlayerMovement playerMovement;
 	[SerializeField] private InventoryWindow inventorySO;
-	public bool isPlayerVisible => isOnLight || isSelfLight;
 
 	[Header("Slash")]
 	[SerializeField] private GameObject vfx_slash;
@@ -27,11 +25,14 @@ public class Player : Characters
 	[SerializeField] private Teleporter teleporter = null;
 	[SerializeField] private Transform jumpPosition;
 	private bool canTeleport => teleporter != null;
-	private FloorLevelManager floorLevelManager;
 	void Awake()
 	{
 		playerStats = new PlayerStats(playerSO.playerStats);
-		floorLevelManager = FindObjectOfType<FloorLevelManager>();
+	}
+
+	protected override void Start()
+	{
+		base.Start();
 	}
 
 	void OnEnable()
@@ -70,7 +71,7 @@ public class Player : Characters
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			if (currentFloorLevel > 0)
+			if (floorNumber > 0)
 			{
 				DoJump();
 			}
@@ -79,16 +80,24 @@ public class Player : Characters
 
 	private void DoTeleport()
 	{
-		if (!floorLevelManager.MoveFloorLevel(currentFloorLevel, teleporter)) return;
+		if (!floorLevelManager.MoveFloorLevel(floorNumber, teleporter)) return;
+
+		SetLayerCollision(floorLevelManager.GetFloorLevel(floorNumber), true);
+		SetLayerCollision(teleporter.targetFloorLevel, false);
+
 		transform.position = teleporter.targetSpawner.position;
-		currentFloorLevel = teleporter.targetFloorLevel;
+		floorNumber = teleporter.targetFloorNumber;
 	}
 
 	private void DoJump()
 	{
-		if (!floorLevelManager.MoveFloorLevel(currentFloorLevel, currentFloorLevel - 1)) return;
+		if (!floorLevelManager.MoveFloorLevel(floorNumber, floorNumber - 1)) return;
+
+		SetLayerCollision(floorLevelManager.GetFloorLevel(floorNumber), true);
+		SetLayerCollision(floorLevelManager.GetFloorLevel(floorNumber - 1), false);
+
 		transform.position = jumpPosition.position;
-		currentFloorLevel--;
+		floorNumber--;
 	}
 
 	private void SpawnSlash()

@@ -6,6 +6,11 @@ public class PlayerAttack : MonoBehaviour
 {
 	public float hitDamage;
 	public E_PlayerAttackType e_PlayerAttackType;
+	private Player player;
+	void Awake()
+	{
+		player = GetComponentInParent<Player>();
+	}
 	public void Setup(PlayerStats stats)
 	{
 		hitDamage = stats.atk;
@@ -25,6 +30,11 @@ public class PlayerAttack : MonoBehaviour
 	public void DestroySelf()
 	{
 		Destroy(gameObject);
+	}
+
+	public int GetPlayerFloorLevel()
+	{
+		return player.floorNumber;
 	}
 }
 

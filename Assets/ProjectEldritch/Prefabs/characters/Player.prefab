@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7213657677956946939
 Transform:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8853226877951989192}
   - component: {fileID: 2143100473858658279}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DebugArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1224239834916985577}
   - component: {fileID: 1224239834916985578}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: face Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c78e09cf61fe44e91ae34d80f1fa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentFloorLevel: 0
+  floorNumber: 0
   playerSO: {fileID: 11400000, guid: e72fee052d2b0284892ad436d73e0472, type: 2}
   onHpUpdateChannel: {fileID: 11400000, guid: 8433e3c9f5fde3a42882a0b18cd47d39, type: 2}
   onPowerUpUseChannel: {fileID: 11400000, guid: 220b0c03abc49e748a096efa91daee5e, type: 2}
@@ -333,7 +333,6 @@ MonoBehaviour:
     dashSpeed: 0
     maxDashCounter: 0
     inventorySize: 0
-  isSelfLight: 1
   isOnLight: 0
   playerMovement: {fileID: 4822457023454996370}
   inventorySO: {fileID: 0}
@@ -941,6 +940,10 @@ PrefabInstance:
     - target: {fileID: 6375922986348912929, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
       propertyPath: m_Name
       value: LightSource
+      objectReference: {fileID: 0}
+    - target: {fileID: 6375922986348912929, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6375922986348912930, guid: 93c803e35393f9a41832607ff9ec550a, type: 3}
       propertyPath: m_Color.b
