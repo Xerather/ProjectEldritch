@@ -21,12 +21,11 @@ public class Player : Characters
 	[SerializeField] private GameObject shurikenPrefab;
 
 	[Header("Teleport")]
-	[SerializeField] private Teleporter teleporter = null;
 	[SerializeField] private Transform jumpPosition;
 
 	private JumpAssasination jumpAssasinationHandler;
-	private bool canTeleport => teleporter != null;
 	private float hitInvicibiltyCounter;
+	[SerializeField] private PlayerTeleportHandle playerTeleportHandle;
 	void Awake()
 	{
 		playerStats = new PlayerStats(playerSO.playerStats);
@@ -64,7 +63,7 @@ public class Player : Characters
 		}
 		if (Input.GetKeyDown(KeyCode.Mouse1))
 		{
-			SpawnShuriken();
+			// SpawnShuriken();
 		}
 	}
 
@@ -72,7 +71,7 @@ public class Player : Characters
 	{
 		if (Input.GetKeyDown(KeyCode.F))
 		{
-			if (canTeleport) DoTeleport();
+			if (playerTeleportHandle.canTeleport) DoTeleport();
 			if (jumpAssasinationHandler.canAssasinate && floorNumber > 0)
 			{
 				DoJumpAssasination();
@@ -97,6 +96,8 @@ public class Player : Characters
 
 	private void DoTeleport()
 	{
+		Teleporter teleporter = playerTeleportHandle.teleporter;
+		if (!teleporter.isTeleportable) return;
 		if (!floorLevelManager.MoveFloorLevel(floorNumber, teleporter)) return;
 
 		SetLayerCollision(floorLevelManager.GetFloorLevel(floorNumber), true);
@@ -132,23 +133,6 @@ public class Player : Characters
 
 	}
 
-	private void OnTriggerEnter2D(Collider2D col)
-	{
-		if (col.gameObject.CompareTag("Teleporter"))
-		{
-			teleporter = col.GetComponent<Teleporter>();
-		}
-	}
-
-	private void OnTriggerExit2D(Collider2D col)
-	{
-
-		if (col.gameObject.CompareTag("Teleporter"))
-		{
-			teleporter = null;
-		}
-	}
-
 	public void AddItem(ItemSO itemSO, int qty = 1)
 	{
 		inventorySO.AddItem(itemSO, qty);
@@ -173,11 +157,6 @@ public class Player : Characters
 		playerStats.hp -= hitDamage;
 		onHpUpdateChannel.RaiseEvent(playerStats.hp, playerStats.maxHp);
 		hitInvicibiltyCounter = playerStats.hitInvicibiltyCooldown;
-		if (playerStats.hp <= 0)
-		{
-			Debug.Log("================= GAME OVER ===================");
-			return;
-		}
 
 		StartCoroutine(BlinkingRed());
 	}

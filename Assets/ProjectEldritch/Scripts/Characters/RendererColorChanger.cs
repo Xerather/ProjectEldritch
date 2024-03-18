@@ -20,6 +20,11 @@ public class RendererColorChanger : MonoBehaviour
 		spriteRenderer.color = colorRed;
 	}
 
+	public void TurnBlue()
+	{
+		spriteRenderer.color = Color.blue;
+	}
+
 	public void TurnDefault()
 	{
 		spriteRenderer.color = colorDefault;

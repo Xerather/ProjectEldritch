@@ -13,6 +13,7 @@ public class Teleporter : MonoBehaviour
 	public int targetFloorNumber => targetTeleporter.floorNumber;
 	public FloorLevel targetFloorLevel => targetTeleporter.floorLevel;
 	public int floorNumber => floorLevel.floorNumber;
+	public bool isTeleportable => targetTeleporter != null;
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{

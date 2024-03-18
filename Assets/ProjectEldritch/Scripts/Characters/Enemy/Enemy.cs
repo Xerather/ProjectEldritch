@@ -41,6 +41,7 @@ public class Enemy : Characters
 		bool hitable = CheckCanBeHit() || alwaysHit;
 		if (!hitable) return;
 
+		// if (enemyStats.hp == enemyStats.maxHp) StartCoroutine(GetStunned());
 		enemyStats.hp -= hitDamage;
 		onEnemyGotHit.RaiseEvent(hitDamage, hitDamage);
 		if (enemyStats.hp <= 0)
@@ -59,5 +60,13 @@ public class Enemy : Characters
 	public void NotifyCanBeAssasinate(bool isActive)
 	{
 		assasinationNotif.SetActive(isActive);
+	}
+
+	protected IEnumerator GetStunned()
+	{
+		rendererColorChanger.TurnBlue();
+		yield return new WaitForSeconds(2f);
+		rendererColorChanger.TurnDefault();
+		enemyMovement.LookAtPlayerDirection();
 	}
 }

@@ -27,6 +27,7 @@ public class Characters : MonoBehaviour
 	protected void CharacterDie()
 	{
 		PlayDeathAnimation();
+		StopAllCoroutines();
 		DestroySelf();
 	}
 

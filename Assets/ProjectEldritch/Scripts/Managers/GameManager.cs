@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 	private void GameOverSanity(float sanity, float maxSanity)
 	{
 		if (sanity > 0) return;
-		GameOver();
+		// GameOver();
 	}
 
 	private void GameOver()

@@ -211,6 +211,13 @@ public class EnemyMovement : MonoBehaviour
 		return (player.transform.position - transform.position).normalized;
 	}
 
+	public Vector2 LookAtPlayerDirection()
+	{
+		Player player = FindObjectOfType<Player>();
+		if (player == null) return Vector2.zero;
+		return (player.transform.position - transform.position).normalized;
+	}
+
 	public Vector2 GetDirectionTowardObject(GameObject target)
 	{
 		// Debug.Log($"{target} - {transform.position} = {(target.transform.position - transform.position).normalized}");

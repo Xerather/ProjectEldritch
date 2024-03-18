@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Dash()
 	{
-		if (Input.GetKeyDown(KeyCode.LeftShift))
+		if (Input.GetKeyDown(KeyCode.Mouse1))
 		{
 			if (dashDurationCounter <= 0 && dashCounter > 0)
 			{
