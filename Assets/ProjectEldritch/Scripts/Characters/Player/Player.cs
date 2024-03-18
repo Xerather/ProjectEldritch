@@ -73,7 +73,7 @@ public class Player : Characters
 		if (Input.GetKeyDown(KeyCode.F))
 		{
 			if (canTeleport) DoTeleport();
-			if (jumpAssasinationHandler.canAssasinate)
+			if (jumpAssasinationHandler.canAssasinate && floorNumber > 0)
 			{
 				DoJumpAssasination();
 			}
@@ -92,6 +92,7 @@ public class Player : Characters
 	{
 		Enemy enemy = jumpAssasinationHandler.GetClosestEnemy();
 		enemy.GetAssasinated();
+		DoJump();
 	}
 
 	private void DoTeleport()

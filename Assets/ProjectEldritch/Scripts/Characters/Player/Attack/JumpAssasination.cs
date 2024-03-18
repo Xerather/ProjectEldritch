@@ -15,29 +15,34 @@ public class JumpAssasination : MonoBehaviour
 	}
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		if (col.CompareTag("Enemy"))
+		if (col.CompareTag("Enemy") || col.CompareTag("EnemyHitBox"))
 		{
 			// interactionMessageChannel.RaiseEvent()
-			Enemy enemy = col.GetComponent<Enemy>();
+			Enemy enemy = col.GetComponentInParent<Enemy>();
 			if (enemy.floorNumber >= player.floorNumber) return;
+			if (enemyList.Contains(enemy)) return;
 			enemyList.Add(enemy);
 
-			Debug.Log($"GOT ENEMIES = {col.gameObject.name}");
-			GetClosestEnemy();
-			NotifyEnemy();
+			CheckEnemyList();
 		}
 	}
 
 	private void OnTriggerExit2D(Collider2D col)
 	{
-		if (col.CompareTag("Enemy"))
+		if (col.CompareTag("Enemy") || col.CompareTag("EnemyHitBox"))
 		{
-			Debug.Log($"removed = {col.gameObject.name}");
-			GetClosestEnemy();
-			NotifyEnemy();
-			Enemy enemy = col.GetComponent<Enemy>();
+			RemoveEnemyNotif();
+
+			Enemy enemy = col.GetComponentInParent<Enemy>();
 			enemyList.Remove(enemy);
+			CheckEnemyList();
 		}
+	}
+
+	private void CheckEnemyList()
+	{
+		GetClosestEnemy();
+		NotifyEnemy();
 	}
 
 	public Enemy GetClosestEnemy()
@@ -59,8 +64,15 @@ public class JumpAssasination : MonoBehaviour
 	{
 		foreach (Enemy enemy in enemyList)
 		{
-			Debug.Log($"closest enemy == null ? {closestEnemy == null} || enemy == closestenemy? {enemy == closestEnemy}");
 			enemy.NotifyCanBeAssasinate(enemy == closestEnemy);
+		}
+	}
+
+	private void RemoveEnemyNotif()
+	{
+		foreach (Enemy enemy in enemyList)
+		{
+			enemy.NotifyCanBeAssasinate(false);
 		}
 	}
 
