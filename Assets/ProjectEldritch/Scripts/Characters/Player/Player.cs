@@ -103,12 +103,7 @@ public class Player : Characters
 
 	private void OnCollisionEnter2D(Collision2D col)
 	{
-		if (col.gameObject.CompareTag("Enemy"))
-		{
-			Debug.Log("<color=red>Player hit!</color>");
-			playerStats.hp--;
-			onHpUpdateChannel.RaiseEvent(playerStats.hp, playerStats.maxHp);
-		}
+
 	}
 
 	private void OnTriggerEnter2D(Collider2D col)
@@ -152,6 +147,12 @@ public class Player : Characters
 	private void UsePowerUp(PowerUpSO powerUp)
 	{
 		playerStats.AddStats(powerUp.additionalStats);
+		onHpUpdateChannel.RaiseEvent(playerStats.hp, playerStats.maxHp);
+	}
+
+	public void GetHit(float hitDamage)
+	{
+		playerStats.hp -= hitDamage;
 		onHpUpdateChannel.RaiseEvent(playerStats.hp, playerStats.maxHp);
 	}
 }

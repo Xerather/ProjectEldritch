@@ -7,7 +7,6 @@ public class EnemyHeart : MonoBehaviour
 	[SerializeField] private Enemy enemy;
 	private void OnTriggerEnter2D(Collider2D col)
 	{
-		Debug.Log($"col = {col.gameObject.name}");
 		if (col.gameObject.CompareTag("PlayerAttack"))
 		{
 			PlayerAttack attack = col.GetComponent<PlayerAttack>();

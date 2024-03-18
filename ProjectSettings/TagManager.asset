@@ -8,6 +8,7 @@ TagManager:
   - Light
   - PlayerAttack
   - Teleporter
+  - EnemyWeakSide
   layers:
   - Default
   - TransparentFX

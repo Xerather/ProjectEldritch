@@ -20,9 +20,9 @@ public class FloorLevel : MonoBehaviour
 		ActivateCollider(isTarget);
 	}
 
-	public void ChangeTileMapOpacity(bool activeOrHigher)
+	public void ChangeTileMapOpacity(bool targetIsActiveOrHigher)
 	{
-		float currentAlpha = activeOrHigher ? 1f : .4f;
+		float currentAlpha = targetIsActiveOrHigher ? 1f : .4f;
 
 		foreach (Tilemap tilemap in tilemapList)
 		{
