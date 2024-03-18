@@ -180,6 +180,4 @@ public class Player : Characters
 
 		StartCoroutine(BlinkingRed());
 	}
-
-
 }

@@ -478,9 +478,10 @@ GameObject:
   - component: {fileID: 8109632275546683466}
   - component: {fileID: 8109632275546683467}
   - component: {fileID: 2249958334499108011}
+  - component: {fileID: 3336443180807289374}
   m_Layer: 10
   m_Name: renderer
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -566,6 +567,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorRed: {r: 1, g: 0, b: 0, a: 1}
   colorDefault: {r: 0, g: 0, b: 0, a: 0}
+--- !u!70 &3336443180807289374
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8109632275546683465}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.6}
+  m_Size: {x: 1, y: 1.9}
+  m_Direction: 0
 --- !u!1 &8109632275716590984
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +642,7 @@ MonoBehaviour:
   floorNumber: 0
   enemySO: {fileID: 11400000, guid: 4f4ea84d92180ac42b7ee50978836a31, type: 2}
   onEnemyGotHit: {fileID: 11400000, guid: 6688d9a22e3150b4094936554267e62f, type: 2}
+  assasinationNotif: {fileID: 0}
   enemyStats:
     maxHp: 0
     hp: 0
