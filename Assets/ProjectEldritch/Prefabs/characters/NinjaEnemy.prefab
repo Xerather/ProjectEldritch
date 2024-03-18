@@ -994,7 +994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 3
-  attackDistance: 12
+  attackDistance: 30
   chargeDuration: 1
   chargeSpeed: 10
   chargePrepTime: 1
