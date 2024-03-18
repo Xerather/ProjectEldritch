@@ -7,7 +7,7 @@ public class Enemy : Characters
 {
 	[SerializeField] private EnemySO enemySO;
 	[SerializeField] private FloatEventChannelSO onEnemyGotHit;
-	private RendererColorChanger rendererColorChanger;
+	[SerializeField] private GameObject assasinationNotif;
 	public EnemyStats enemyStats;
 	private EnemyMovement enemyMovement;
 	public float hp => enemyStats.hp;
@@ -17,7 +17,6 @@ public class Enemy : Characters
 	{
 		enemyMovement = GetComponent<EnemyMovement>();
 		enemyStats = new EnemyStats(enemySO.baseEnemyStats);
-		rendererColorChanger = GetComponentInChildren<RendererColorChanger>();
 
 		enemyMovement?.Setup(enemyStats);
 		weakSideColliderList = GetComponentsInChildren<WeakSideCollider>();
@@ -49,7 +48,7 @@ public class Enemy : Characters
 			CharacterDie();
 			return;
 		}
-		StartCoroutine(EnemiesRed());
+		StartCoroutine(BlinkingRed());
 	}
 
 	public void GetAssasinated()
@@ -57,10 +56,8 @@ public class Enemy : Characters
 		GetHit(enemyStats.hp, true);
 	}
 
-	private IEnumerator EnemiesRed()
+	public void NotifyCanBeAssasinate(bool isActive)
 	{
-		rendererColorChanger.TurnRed();
-		yield return new WaitForSeconds(.3f);
-		rendererColorChanger.TurnDefault();
+		assasinationNotif.SetActive(isActive);
 	}
 }

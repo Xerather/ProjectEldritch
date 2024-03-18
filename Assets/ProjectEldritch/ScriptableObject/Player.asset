@@ -23,3 +23,4 @@ MonoBehaviour:
     dashSpeed: 10
     maxDashCounter: 1
     inventorySize: 3
+    hitInvicibiltyCooldown: 1.5

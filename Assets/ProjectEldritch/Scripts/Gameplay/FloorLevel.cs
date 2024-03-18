@@ -17,7 +17,6 @@ public class FloorLevel : MonoBehaviour
 	public void ChangeFloorState(bool isTarget, bool targetIsHigher)
 	{
 		ChangeTileMapOpacity(isTarget || targetIsHigher);
-		ActivateCollider(isTarget);
 	}
 
 	public void ChangeTileMapOpacity(bool targetIsActiveOrHigher)
@@ -27,15 +26,6 @@ public class FloorLevel : MonoBehaviour
 		foreach (Tilemap tilemap in tilemapList)
 		{
 			tilemap.color = new Color(255, 255, 255, currentAlpha);
-		}
-	}
-
-	public void ActivateCollider(bool isActive)
-	{
-		return;
-		foreach (TilemapCollider2D collider2D in collider2DList)
-		{
-			collider2D.enabled = isActive;
 		}
 	}
 
