@@ -18,9 +18,9 @@ public class EnemyMovement : MonoBehaviour
 	private float eatDuration => enemyStats.eatDuration;
 	private float searchDuration => enemyStats.searchDuration;
 	private E_EnemyState enemyState;
-	[SerializeField] private Transform faceDirection;
+	public Transform faceDirection;
 
-
+	public bool lockRotation = false;
 	void Awake()
 	{
 		enemyState = E_EnemyState.Patrol;
@@ -37,7 +37,7 @@ public class EnemyMovement : MonoBehaviour
 
 	private void Update()
 	{
-		if (enemyState == E_EnemyState.Eating)
+		if (enemyState == E_EnemyState.Attack)
 		{
 			eatElapsed += Time.deltaTime;
 			if (eatElapsed > eatDuration)
@@ -91,6 +91,7 @@ public class EnemyMovement : MonoBehaviour
 
 	public void OnSpotExit()
 	{
+		if (enemyState == E_EnemyState.Attack) return;
 		DoSearch();
 	}
 
@@ -129,7 +130,7 @@ public class EnemyMovement : MonoBehaviour
 		Debug.Log($"eating started");
 
 
-		enemyState = E_EnemyState.Eating;
+		enemyState = E_EnemyState.Attack;
 		soundMaker?.PlaySfx("hit");
 
 		patrol.enabled = false;
@@ -138,6 +139,21 @@ public class EnemyMovement : MonoBehaviour
 		// fOVMechanic.enabled = false;
 
 		StopMovement();
+	}
+
+	public void DoAttack()
+	{
+		enemyState = E_EnemyState.Attack;
+
+		patrol.enabled = false;
+		aiDestinationSetter.enabled = false;
+		aIPath.canMove = false;
+	}
+
+	public void EndAttack()
+	{
+		aIPath.canMove = true;
+		DoChase();
 	}
 
 	private void DoSearch()
@@ -165,7 +181,20 @@ public class EnemyMovement : MonoBehaviour
 
 	private void RotateDirection()
 	{
-		faceDirection.right = aIPath.desiredVelocity;
+		if (!lockRotation) faceDirection.right = enemyState == E_EnemyState.Attack ? GetPlayerDirection() : aIPath.desiredVelocity;
+	}
+
+	public Vector2 GetPlayerDirection()
+	{
+		GameObject player = fOVMechanic._spottedPlayer;
+		if (player == null) return Vector2.zero;
+		Debug.Log($"{player.transform.position} - {transform.position} = {(player.transform.position - transform.position).normalized}");
+		return (player.transform.position - transform.position).normalized;
+	}
+
+	public void LockRotation(bool isLocked)
+	{
+		lockRotation = isLocked;
 	}
 }
 
@@ -174,5 +203,5 @@ public enum E_EnemyState
 	Patrol = 0,
 	Search = 1,
 	Chase = 2,
-	Eating = 3
+	Attack = 3
 }

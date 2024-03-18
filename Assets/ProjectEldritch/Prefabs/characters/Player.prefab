@@ -328,6 +328,7 @@ MonoBehaviour:
     hp: 5
     atk: 1
     speed: 4
+    dashDuration: 0
     dashCooldown: 0
     dashSpeed: 0
     maxDashCounter: 0
@@ -831,9 +832,9 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 540405493
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Time: 0.2
   m_Parameters:
     serializedVersion: 3

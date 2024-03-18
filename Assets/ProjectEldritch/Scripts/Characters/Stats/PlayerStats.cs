@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class PlayerStats : BaseStats
 {
-	public const float DASH_DURATION = .5f;
+	public float dashDuration;
 	public float dashCooldown;
 	public float dashSpeed;
 	public float maxDashCounter;
@@ -26,7 +26,9 @@ public class PlayerStats : BaseStats
 
 	public PlayerStats(PlayerStats stats) : base(stats)
 	{
+		dashDuration = stats.dashDuration;
 		dashCooldown = stats.dashCooldown;
+		dashSpeed = stats.dashSpeed;
 		maxDashCounter = stats.maxDashCounter;
 		inventorySize = stats.inventorySize;
 	}
