@@ -8,6 +8,7 @@ public class PlayerStats : BaseStats
 	public float dashSpeed;
 	public float maxDashCounter;
 	public int inventorySize;
+	public float hitInvicibiltyCooldown;
 
 	public void AddStats(PowerUpSO powerUp)
 	{
@@ -31,5 +32,6 @@ public class PlayerStats : BaseStats
 		dashSpeed = stats.dashSpeed;
 		maxDashCounter = stats.maxDashCounter;
 		inventorySize = stats.inventorySize;
+		hitInvicibiltyCooldown = stats.hitInvicibiltyCooldown;
 	}
 }

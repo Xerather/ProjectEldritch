@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Characters : MonoBehaviour
 {
+	protected RendererColorChanger rendererColorChanger;
 	protected Vector3 spawnPos;
 	public int floorNumber;
 	protected FloorLevelManager floorLevelManager;
@@ -11,6 +12,8 @@ public class Characters : MonoBehaviour
 	{
 		spawnPos = transform.position;
 		floorLevelManager = FindObjectOfType<FloorLevelManager>();
+		rendererColorChanger = GetComponentInChildren<RendererColorChanger>();
+
 		SetLayerCollision();
 		Reset();
 	}
@@ -41,14 +44,20 @@ public class Characters : MonoBehaviour
 	{
 		foreach (FloorLevel floorLevel in floorLevelManager.GetFloorLevelList())
 		{
-			Debug.Log($"{this.name} , {floorLevel.GetLayerId()} = {floorLevel.floorNumber != floorNumber}");
+			// Debug.Log($"{this.name} , {floorLevel.GetLayerId()} = {floorLevel.floorNumber != floorNumber}");
 			Physics2D.IgnoreLayerCollision(gameObject.layer, floorLevel.GetLayerId(), floorLevel.floorNumber != floorNumber);
 		}
 	}
 
 	protected void SetLayerCollision(FloorLevel targetFloorLevel, bool isActive)
 	{
-		Debug.Log($"{this.name} , {targetFloorLevel.GetLayerId()} = {isActive}");
+		// Debug.Log($"{this.name} , {targetFloorLevel.GetLayerId()} = {isActive}");
 		Physics2D.IgnoreLayerCollision(gameObject.layer, targetFloorLevel.GetLayerId(), isActive);
+	}
+	protected IEnumerator BlinkingRed()
+	{
+		rendererColorChanger.TurnRed();
+		yield return new WaitForSeconds(.3f);
+		rendererColorChanger.TurnDefault();
 	}
 }

@@ -9,6 +9,9 @@ TagManager:
   - PlayerAttack
   - Teleporter
   - EnemyWeakSide
+  - AssasinationCollider
+  - EnemyAttack
+  - EnemyHitBox
   layers:
   - Default
   - TransparentFX

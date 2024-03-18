@@ -14,7 +14,6 @@ public class FloorLevelManager : MonoBehaviour
 		foreach (FloorLevel floorLevel in floorLevelList)
 		{
 			floorLevel.ChangeTileMapOpacity(startingLevel >= floorLevel.floorNumber);
-			floorLevel.ActivateCollider(floorLevel.floorNumber == startingLevel);
 		}
 	}
 

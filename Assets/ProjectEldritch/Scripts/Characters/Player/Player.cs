@@ -10,7 +10,6 @@ public class Player : Characters
 	[SerializeField] private PowerUpEventChannelSO onPowerUpUseChannel;
 	[SerializeField] private SoundMaker soundMaker;
 	public PlayerStats playerStats;
-	[SerializeField] private bool isOnLight = false;
 	[SerializeField] private PlayerMovement playerMovement;
 	[SerializeField] private InventoryWindow inventorySO;
 
@@ -24,10 +23,15 @@ public class Player : Characters
 	[Header("Teleport")]
 	[SerializeField] private Teleporter teleporter = null;
 	[SerializeField] private Transform jumpPosition;
+
+	private JumpAssasination jumpAssasinationHandler;
 	private bool canTeleport => teleporter != null;
+	private float hitInvicibiltyCounter;
 	void Awake()
 	{
 		playerStats = new PlayerStats(playerSO.playerStats);
+		jumpAssasinationHandler = GetComponentInChildren<JumpAssasination>();
+		jumpAssasinationHandler.Setup(this);
 	}
 
 	protected override void Start()
@@ -48,6 +52,8 @@ public class Player : Characters
 	{
 		HandleInteraction();
 		HandleAttack();
+
+		if (hitInvicibiltyCounter > 0) hitInvicibiltyCounter -= Time.deltaTime;
 	}
 
 	private void HandleAttack()
@@ -67,6 +73,10 @@ public class Player : Characters
 		if (Input.GetKeyDown(KeyCode.F))
 		{
 			if (canTeleport) DoTeleport();
+			if (jumpAssasinationHandler.canAssasinate && floorNumber > 0)
+			{
+				DoJumpAssasination();
+			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -76,6 +86,13 @@ public class Player : Characters
 				DoJump();
 			}
 		}
+	}
+
+	private void DoJumpAssasination()
+	{
+		Enemy enemy = jumpAssasinationHandler.GetClosestEnemy();
+		enemy.GetAssasinated();
+		DoJump();
 	}
 
 	private void DoTeleport()
@@ -123,20 +140,8 @@ public class Player : Characters
 		}
 	}
 
-	private void OnTriggerStay2D(Collider2D col)
-	{
-		if (col.gameObject.CompareTag("Light"))
-		{
-			isOnLight = true;
-		}
-	}
-
 	private void OnTriggerExit2D(Collider2D col)
 	{
-		if (col.gameObject.CompareTag("Light"))
-		{
-			isOnLight = false;
-		}
 
 		if (col.gameObject.CompareTag("Teleporter"))
 		{
@@ -161,7 +166,19 @@ public class Player : Characters
 
 	public void GetHit(float hitDamage)
 	{
+		if (hitInvicibiltyCounter > 0) return;
+
+		if (playerStats.hp <= 0) return;
+
 		playerStats.hp -= hitDamage;
 		onHpUpdateChannel.RaiseEvent(playerStats.hp, playerStats.maxHp);
+		hitInvicibiltyCounter = playerStats.hitInvicibiltyCooldown;
+		if (playerStats.hp <= 0)
+		{
+			Debug.Log("================= GAME OVER ===================");
+			return;
+		}
+
+		StartCoroutine(BlinkingRed());
 	}
 }
