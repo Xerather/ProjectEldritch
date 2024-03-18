@@ -7,19 +7,16 @@ using UnityEngine.Tilemaps;
 public class FloorLevelManager : MonoBehaviour
 {
 	[SerializeField] private List<FloorLevel> floorLevelList = new();
-
+	[SerializeField] private int startingLevel;
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		foreach (FloorLevel floorLevel in floorLevelList)
+		{
+			floorLevel.ChangeTileMapOpacity(startingLevel >= floorLevel.level);
+			floorLevel.ActivateCollider(floorLevel.level == startingLevel);
+		}
 	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
-
 
 	public bool MoveFloorLevel(int currentLevel, int targetLevel)
 	{
