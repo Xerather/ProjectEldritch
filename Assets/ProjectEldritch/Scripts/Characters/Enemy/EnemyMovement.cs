@@ -19,8 +19,11 @@ public class EnemyMovement : MonoBehaviour
 	private float searchDuration => enemyStats.searchDuration;
 	private E_EnemyState enemyState;
 	public Transform faceDirection;
-
-	public bool lockRotation = false;
+	[Header("Default Direction")]
+	[SerializeField] private bool isGuardingSpecificDirection;
+	[SerializeField] private Transform guardDirection;
+	private Vector3 lastDirection;
+	[SerializeField] private bool lockRotation = false;
 	void Awake()
 	{
 		enemyState = E_EnemyState.Patrol;
@@ -59,6 +62,19 @@ public class EnemyMovement : MonoBehaviour
 			}
 		}
 
+		if (enemyState == E_EnemyState.Patrol)
+		{
+			if (aIPath.desiredVelocity == Vector3.zero)
+			{
+				faceDirection.right = isGuardingSpecificDirection ? GetDirectionTowardObject(guardDirection.gameObject) : lastDirection;
+				LockRotation(true);
+			}
+			else
+			{
+				lastDirection = aIPath.desiredVelocity;
+				LockRotation(false);
+			}
+		}
 	}
 
 	private void FixedUpdate()
@@ -106,7 +122,7 @@ public class EnemyMovement : MonoBehaviour
 
 	public void DoPatrol()
 	{
-		Debug.Log($"Patrol started");
+		// Debug.Log($"Patrol started");
 
 		enemyState = E_EnemyState.Patrol;
 
@@ -117,22 +133,23 @@ public class EnemyMovement : MonoBehaviour
 
 	private void DoChase()
 	{
-		Debug.Log($"Chasing started");
+		// Debug.Log($"Chasing started");
 
 		enemyState = E_EnemyState.Chase;
 
+		LockRotation(false);
 		patrol.enabled = false;
 		aiDestinationSetter.enabled = true;
 	}
 
 	private void DoEat()
 	{
-		Debug.Log($"eating started");
-
+		// Debug.Log($"eating started");
 
 		enemyState = E_EnemyState.Attack;
 		soundMaker?.PlaySfx("hit");
 
+		LockRotation(false);
 		patrol.enabled = false;
 		aiDestinationSetter.enabled = false;
 
@@ -145,6 +162,7 @@ public class EnemyMovement : MonoBehaviour
 	{
 		enemyState = E_EnemyState.Attack;
 
+		LockRotation(false);
 		patrol.enabled = false;
 		aiDestinationSetter.enabled = false;
 		aIPath.canMove = false;
@@ -158,11 +176,11 @@ public class EnemyMovement : MonoBehaviour
 
 	private void DoSearch()
 	{
-		Debug.Log($"Searching started");
+		// Debug.Log($"Searching started");
 
+		LockRotation(false);
 		enemyState = E_EnemyState.Search;
 		searchElapsed = 0f;
-		// aiDestinationSetter.target
 	}
 
 	private void OnEndSearch()
@@ -181,6 +199,7 @@ public class EnemyMovement : MonoBehaviour
 
 	private void RotateDirection()
 	{
+		// Debug.Log($"aIPath.desiredVelocity = {aIPath.desiredVelocity}");
 		if (!lockRotation) faceDirection.right = enemyState == E_EnemyState.Attack ? GetPlayerDirection() : aIPath.desiredVelocity;
 	}
 
@@ -188,8 +207,14 @@ public class EnemyMovement : MonoBehaviour
 	{
 		GameObject player = fOVMechanic._spottedPlayer;
 		if (player == null) return Vector2.zero;
-		Debug.Log($"{player.transform.position} - {transform.position} = {(player.transform.position - transform.position).normalized}");
+		// Debug.Log($"{player.transform.position} - {transform.position} = {(player.transform.position - transform.position).normalized}");
 		return (player.transform.position - transform.position).normalized;
+	}
+
+	public Vector2 GetDirectionTowardObject(GameObject target)
+	{
+		// Debug.Log($"{target} - {transform.position} = {(target.transform.position - transform.position).normalized}");
+		return (target.transform.position - transform.position).normalized;
 	}
 
 	public void LockRotation(bool isLocked)

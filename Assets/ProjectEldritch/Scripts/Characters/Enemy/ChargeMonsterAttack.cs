@@ -15,6 +15,7 @@ public class ChargeMonsterAttack : MonoBehaviour
 	private EnemyMovement enemyMovement;
 	private Rigidbody2D rb;
 	private FOVMechanic fov;
+	private bool isAttacking;
 	void Awake()
 	{
 		cooldownCounter = 0;
@@ -38,8 +39,9 @@ public class ChargeMonsterAttack : MonoBehaviour
 	}
 	private void DoCharge()
 	{
-		if (cooldownCounter <= 0 && PlayerInAttackRange())
+		if (cooldownCounter <= 0 && PlayerInAttackRange() && !isAttacking)
 		{
+			isAttacking = true;
 			enemyMovement.DoAttack();
 			StartCoroutine(ChargeAnimation());
 		}
@@ -50,6 +52,7 @@ public class ChargeMonsterAttack : MonoBehaviour
 
 	private IEnumerator ChargeAnimation()
 	{
+		Debug.Log("channeling");
 		yield return new WaitForSeconds(chargePrepTime);
 		enemyMovement.LockRotation(true);
 		rb.velocity = enemyMovement.GetPlayerDirection() * chargeSpeed;
@@ -59,5 +62,6 @@ public class ChargeMonsterAttack : MonoBehaviour
 		rb.velocity = Vector2.zero;
 		cooldownCounter = cooldown;
 		enemyMovement.EndAttack();
+		isAttacking = false;
 	}
 }

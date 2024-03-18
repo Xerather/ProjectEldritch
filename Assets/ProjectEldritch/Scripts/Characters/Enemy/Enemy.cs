@@ -7,8 +7,7 @@ public class Enemy : Characters
 {
 	[SerializeField] private EnemySO enemySO;
 	[SerializeField] private FloatEventChannelSO onEnemyGotHit;
-	[SerializeField] private RendererColorChanger rendererColorChanger;
-	private EnemyHeart enemyHeart;
+	private RendererColorChanger rendererColorChanger;
 	public EnemyStats enemyStats;
 	private EnemyMovement enemyMovement;
 	public float hp => enemyStats.hp;
