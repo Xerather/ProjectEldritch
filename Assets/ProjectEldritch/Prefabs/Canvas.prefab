@@ -2770,20 +2770,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5130703404745043112, guid: f5e671cb04bef1844957c11e5908b6fd, type: 3}
-      propertyPath: m_text
-      value: '[F] Grapple to Upper Floor On Yellow Floor
-
-        [F] Assasinate
-        enemies from above
-
-        [Space] Jump to lower floor
-
-        [L click]
-        Slash
-
-        [L click] Dash'
-      objectReference: {fileID: 0}
-    - target: {fileID: 5130703404745043112, guid: f5e671cb04bef1844957c11e5908b6fd, type: 3}
       propertyPath: m_fontSize
       value: 24
       objectReference: {fileID: 0}
