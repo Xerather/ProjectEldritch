@@ -13,12 +13,14 @@ public class FOVGraphic : MonoBehaviour
 	private float meshRes = 2;
 	private int[] triangles;
 	private int stepCount;
+	private Enemy enemy;
 
 	//Getting a refrence to the FOVMechanic script and the mesh
 	private void Awake()
 	{
 		fov = GetComponentInParent<FOVMechanic>();
 		mesh = GetComponent<MeshFilter>().mesh;
+		enemy = GetComponentInParent<Enemy>();
 	}
 
 	//Updating the fov mesh every late frame dynamically
@@ -52,8 +54,11 @@ public class FOVGraphic : MonoBehaviour
 
 			if (hit.collider != null)
 			{
-				bool playerHit = (fov.playerMask.value & 1 << hit.transform.gameObject.layer) > 0;
-				// bool playerHit = (fov.playerMask.value & 1 << hit.transform.gameObject.layer) > 0 && hit.collider.gameObject.GetComponent<Player>().isPlayerVisible;
+				// bool playerHit = (fov.playerMask.value & 1 << hit.transform.gameObject.layer) > 0;
+				Player player = hit.collider.gameObject.GetComponent<Player>();
+				bool playerCanBeHit = player == null ? false : player.floorNumber == enemy.floorNumber;
+
+				bool playerHit = (fov.playerMask.value & 1 << hit.transform.gameObject.layer) > 0 && playerCanBeHit;
 				viewVertex.Add(transform.position + dir.normalized * ((playerHit && fov.playerBlockView || !playerHit) ? hit.distance : fov.viewRadius));
 
 				if (playerHit)

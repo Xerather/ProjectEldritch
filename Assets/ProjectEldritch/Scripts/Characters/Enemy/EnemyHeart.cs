@@ -12,6 +12,8 @@ public class EnemyHeart : MonoBehaviour
 			PlayerAttack attack = col.GetComponent<PlayerAttack>();
 			if (attack == null) return;
 
+			if (attack.GetPlayerFloorLevel() != enemy.floorNumber) return;
+
 			if (attack.e_PlayerAttackType == E_PlayerAttackType.Slash) enemy.GetHit(attack.hitDamage);
 		}
 	}

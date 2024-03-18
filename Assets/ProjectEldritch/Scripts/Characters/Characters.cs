@@ -5,18 +5,20 @@ using UnityEngine;
 public class Characters : MonoBehaviour
 {
 	protected Vector3 spawnPos;
-	public int currentFloorLevel;
+	public int floorNumber;
+	protected FloorLevelManager floorLevelManager;
 	protected virtual void Start()
 	{
 		spawnPos = transform.position;
+		floorLevelManager = FindObjectOfType<FloorLevelManager>();
+		SetLayerCollision();
 		Reset();
 	}
 
 	private void Reset()
 	{
 		transform.position = spawnPos;
-		// currentHp = characterSO.maxHp;
-		// playerMovement.moveSpeed = characterSO.moveSpeed;
+
 	}
 
 	protected void CharacterDie()
@@ -33,5 +35,20 @@ public class Characters : MonoBehaviour
 	protected void DestroySelf()
 	{
 		Destroy(gameObject);
+	}
+
+	protected void SetLayerCollision()
+	{
+		foreach (FloorLevel floorLevel in floorLevelManager.GetFloorLevelList())
+		{
+			Debug.Log($"{this.name} , {floorLevel.GetLayerId()} = {floorLevel.floorNumber != floorNumber}");
+			Physics2D.IgnoreLayerCollision(gameObject.layer, floorLevel.GetLayerId(), floorLevel.floorNumber != floorNumber);
+		}
+	}
+
+	protected void SetLayerCollision(FloorLevel targetFloorLevel, bool isActive)
+	{
+		Debug.Log($"{this.name} , {targetFloorLevel.GetLayerId()} = {isActive}");
+		Physics2D.IgnoreLayerCollision(gameObject.layer, targetFloorLevel.GetLayerId(), isActive);
 	}
 }

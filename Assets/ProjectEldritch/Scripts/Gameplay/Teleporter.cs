@@ -10,8 +10,9 @@ public class Teleporter : MonoBehaviour
 	[SerializeField] private Transform playerSpawner;
 	public FloorLevel floorLevel;
 	public Transform targetSpawner => targetTeleporter.GetSpawner();
-	public int targetFloorLevel => targetTeleporter.GetFloorLevel;
-	public int GetFloorLevel => floorLevel.level;
+	public int targetFloorNumber => targetTeleporter.floorNumber;
+	public FloorLevel targetFloorLevel => targetTeleporter.floorLevel;
+	public int floorNumber => floorLevel.floorNumber;
 
 	private void OnTriggerEnter2D(Collider2D col)
 	{
