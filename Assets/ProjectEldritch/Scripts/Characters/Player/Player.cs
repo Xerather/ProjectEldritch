@@ -71,7 +71,7 @@ public class Player : Characters
 	{
 		if (Input.GetKeyDown(KeyCode.F))
 		{
-			if (playerTeleportHandle.canTeleport) DoTeleport();
+			if (playerTeleportHandle.canTeleport) StartCoroutine(PrepareTeleport());
 			if (jumpAssasinationHandler.canAssasinate && floorNumber > 0)
 			{
 				DoJumpAssasination();
@@ -90,37 +90,48 @@ public class Player : Characters
 	private void DoJumpAssasination()
 	{
 		Enemy enemy = jumpAssasinationHandler.GetClosestEnemy();
+		PlaySound("stab");
+		DoJump(enemy);
 		enemy.GetAssasinated();
-		DoJump();
 	}
 
 	private void DoTeleport()
 	{
 		Teleporter teleporter = playerTeleportHandle.teleporter;
-		if (!teleporter.isTeleportable) return;
 		if (!floorLevelManager.MoveFloorLevel(floorNumber, teleporter)) return;
 
 		SetLayerCollision(floorLevelManager.GetFloorLevel(floorNumber), true);
 		SetLayerCollision(teleporter.targetFloorLevel, false);
+		SetLayerCollision(10, ignore: true); // enemy id layer
 
+		PlaySound("jump");
 		transform.position = teleporter.targetSpawner.position;
 		floorNumber = teleporter.targetFloorNumber;
+
+		jumpPosition.gameObject.SetActive(true);
 	}
 
-	private void DoJump()
+	private void DoJump(Enemy enemy = null)
 	{
 		if (!floorLevelManager.MoveFloorLevel(floorNumber, floorNumber - 1)) return;
 
 		SetLayerCollision(floorLevelManager.GetFloorLevel(floorNumber), true);
 		SetLayerCollision(floorLevelManager.GetFloorLevel(floorNumber - 1), false);
+		SetLayerCollision(10, ignore: false); // enemy id layer
 
-		transform.position = jumpPosition.position;
+		PlaySound("jump");
+		transform.position = enemy == null ? jumpPosition.position : enemy.transform.position;
+		jumpPosition.gameObject.SetActive(false);
+		jumpAssasinationHandler.RemoveEnemyNotif();
 		floorNumber--;
 	}
 
 	private void SpawnSlash()
 	{
+		playerMovement.DoSlashAnimation();
+
 		Instantiate(vfx_slash, slashPosition);
+		StartCoroutine(ResetAttack());
 	}
 
 	private void SpawnShuriken()
@@ -159,5 +170,25 @@ public class Player : Characters
 		hitInvicibiltyCounter = playerStats.hitInvicibiltyCooldown;
 
 		StartCoroutine(BlinkingRed());
+	}
+
+	protected IEnumerator PrepareTeleport()
+	{
+		PlaySound("grapple");
+		playerMovement.DoGrappleAnimation();
+		yield return new WaitForSeconds(1f);
+		playerMovement.SetCanMove(true);
+		DoTeleport();
+	}
+
+	protected IEnumerator ResetAttack()
+	{
+		yield return new WaitForSeconds(.2f);
+		playerMovement.AnimatorSetBool("IsAttacking", false);
+	}
+
+	public void PlaySound(string sfxName)
+	{
+		soundMaker.PlaySfx(sfxName);
 	}
 }

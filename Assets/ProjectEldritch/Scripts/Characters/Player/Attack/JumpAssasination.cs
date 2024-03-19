@@ -68,7 +68,7 @@ public class JumpAssasination : MonoBehaviour
 		}
 	}
 
-	private void RemoveEnemyNotif()
+	public void RemoveEnemyNotif()
 	{
 		foreach (Enemy enemy in enemyList)
 		{

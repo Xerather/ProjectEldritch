@@ -54,14 +54,13 @@ public class ChargeMonsterAttack : MonoBehaviour
 	{
 		Debug.Log("channeling");
 		yield return new WaitForSeconds(chargePrepTime);
-		enemyMovement.LockRotation(true);
+		enemyMovement.DoChargeAnimation();
 		rb.velocity = enemyMovement.GetPlayerDirection() * chargeSpeed;
 
 		yield return new WaitForSeconds(chargeDuration);
-		enemyMovement.LockRotation(false);
+		enemyMovement.OnEndChargeAnimation();
 		rb.velocity = Vector2.zero;
 		cooldownCounter = cooldown;
-		enemyMovement.EndAttack();
 		isAttacking = false;
 	}
 }
