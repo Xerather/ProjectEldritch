@@ -26,14 +26,8 @@ public class Characters : MonoBehaviour
 
 	protected void CharacterDie()
 	{
-		PlayDeathAnimation();
 		StopAllCoroutines();
 		DestroySelf();
-	}
-
-	protected void PlayDeathAnimation()
-	{
-		//play death animation
 	}
 
 	protected void DestroySelf()
@@ -50,10 +44,16 @@ public class Characters : MonoBehaviour
 		}
 	}
 
-	protected void SetLayerCollision(FloorLevel targetFloorLevel, bool isActive)
+	protected void SetLayerCollision(FloorLevel targetFloorLevel, bool ignore)
 	{
 		// Debug.Log($"{this.name} , {targetFloorLevel.GetLayerId()} = {isActive}");
-		Physics2D.IgnoreLayerCollision(gameObject.layer, targetFloorLevel.GetLayerId(), isActive);
+		Physics2D.IgnoreLayerCollision(gameObject.layer, targetFloorLevel.GetLayerId(), ignore);
+	}
+
+	protected void SetLayerCollision(int layerId, bool ignore)
+	{
+		// Debug.Log($"{this.name} , {targetFloorLevel.GetLayerId()} = {isActive}");
+		Physics2D.IgnoreLayerCollision(gameObject.layer, layerId, ignore);
 	}
 	protected IEnumerator BlinkingRed()
 	{
