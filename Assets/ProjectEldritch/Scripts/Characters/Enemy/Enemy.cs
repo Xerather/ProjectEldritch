@@ -8,11 +8,13 @@ public class Enemy : Characters
 	[SerializeField] private EnemySO enemySO;
 	[SerializeField] private FloatEventChannelSO onEnemyGotHit;
 	[SerializeField] private GameObject assasinationNotif;
+	[SerializeField] private SoundMaker soundMaker;
 	public EnemyStats enemyStats;
 	private EnemyMovement enemyMovement;
 	public float hp => enemyStats.hp;
 	public float maxHp => enemyStats.maxHp;
 	public WeakSideCollider[] weakSideColliderList;
+	private Collider2D[] allCollider;
 	void Awake()
 	{
 		enemyMovement = GetComponent<EnemyMovement>();
@@ -20,6 +22,7 @@ public class Enemy : Characters
 
 		enemyMovement?.Setup(enemyStats);
 		weakSideColliderList = GetComponentsInChildren<WeakSideCollider>();
+		allCollider = GetComponentsInChildren<Collider2D>();
 	}
 
 	protected override void Start()
@@ -46,7 +49,7 @@ public class Enemy : Characters
 		onEnemyGotHit.RaiseEvent(hitDamage, hitDamage);
 		if (enemyStats.hp <= 0)
 		{
-			CharacterDie();
+			StartCoroutine(DoDeathAnimation());
 			return;
 		}
 		StartCoroutine(BlinkingRed());
@@ -68,5 +71,23 @@ public class Enemy : Characters
 		yield return new WaitForSeconds(2f);
 		rendererColorChanger.TurnDefault();
 		enemyMovement.LookAtPlayerDirection();
+	}
+
+	protected IEnumerator DoDeathAnimation()
+	{
+		PlaySound("dead");
+		enemyMovement.DoDeathAnimation();
+		for (int i = 0; i < allCollider.Length; i++)
+		{
+			allCollider[i].enabled = false;
+		}
+		enemyMovement.fOVMechanic.gameObject.SetActive(false);
+		yield return new WaitForSeconds(2f);
+		CharacterDie();
+	}
+
+	public void PlaySound(string sfxName)
+	{
+		soundMaker.PlaySfx(sfxName);
 	}
 }

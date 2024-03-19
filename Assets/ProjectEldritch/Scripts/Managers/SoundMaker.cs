@@ -8,6 +8,7 @@ public class SoundMaker : MonoBehaviour
 
 	public void PlaySfx(string targetName)
 	{
+		Debug.Log($"targetName = {targetName}");
 		AudioSource source = audioClipList.Find((x) => x.gameObject.name == targetName);
 		if (source == null) return;
 		source.Play();

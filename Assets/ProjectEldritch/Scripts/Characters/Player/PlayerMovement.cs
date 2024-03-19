@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] private Player player;
-	[SerializeField] private float rotationSpeed;
+	[SerializeField] private Animator animator;
 	[Header("Debug")]
 	[SerializeField] public Vector2 moveDirection;
 	[SerializeField] private Vector3 mousePosition;
@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float dashCounter;
 	[SerializeField] private TrailRenderer trailRenderer;
 	// Start is called before the first frame update
+
+	private bool canMove = true;
 	void Start()
 	{
 		trailRenderer.emitting = false;
@@ -29,8 +31,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		MovementInputs();
 		Dash();
-
-
 		mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 	}
 
@@ -57,6 +57,12 @@ public class PlayerMovement : MonoBehaviour
 	}
 	private void Move()
 	{
+		if (!canMove) return;
+
+		AnimatorSetFloat("Horizontal", moveDirection.x);
+		AnimatorSetFloat("Vertical", moveDirection.y);
+		AnimatorSetFloat("Speed", moveDirection.sqrMagnitude);
+
 		playerRb.velocity = moveDirection * moveSpeed;
 	}
 
@@ -66,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			if (dashDurationCounter <= 0 && dashCounter > 0)
 			{
+				player.PlaySound("dash");
 				moveSpeed = playerStats.dashSpeed;
 				dashDurationCounter = playerStats.dashDuration;
 				dashCounter--;
@@ -112,5 +119,37 @@ public class PlayerMovement : MonoBehaviour
 
 			// faceDirection.right = moveDirection;
 		}
+	}
+
+	public void AnimatorSetFloat(string key, float value)
+	{
+		animator.SetFloat(key, value);
+	}
+	public void AnimatorSetTrigger(string key)
+	{
+		animator.SetTrigger(key);
+	}
+
+	public void AnimatorSetBool(string key, bool isTrue)
+	{
+		animator.SetBool(key, isTrue);
+	}
+
+	public void DoGrappleAnimation()
+	{
+		canMove = false;
+		AnimatorSetTrigger("Grapple");
+	}
+
+	public void DoSlashAnimation()
+	{
+		AnimatorSetTrigger("Attack");
+		AnimatorSetBool("IsAttacking", true);
+		AnimatorSetFloat("FacingRight", (mousePosition - player.transform.position).x);
+	}
+
+	public void SetCanMove(bool isCanMove)
+	{
+		canMove = isCanMove;
 	}
 }

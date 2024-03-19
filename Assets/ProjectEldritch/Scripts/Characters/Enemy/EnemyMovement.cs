@@ -6,12 +6,13 @@ using Pathfinding;
 public class EnemyMovement : MonoBehaviour
 {
 	[SerializeField] private AIPath aIPath;
-	[SerializeField] private SoundMaker soundMaker;
-	[SerializeField] private FOVMechanic fOVMechanic;
 	[SerializeField] private float seachRadius;
+	[SerializeField] private Animator animator;
+	[SerializeField] private Enemy enemy;
+	[SerializeField] private Patrol patrol;
+	[SerializeField] private AIDestinationSetter aiDestinationSetter;
+	public FOVMechanic fOVMechanic;
 
-	private Patrol patrol;
-	private AIDestinationSetter aiDestinationSetter;
 	private float eatElapsed;
 	private float searchElapsed;
 	private EnemyStats enemyStats;
@@ -27,8 +28,6 @@ public class EnemyMovement : MonoBehaviour
 	void Awake()
 	{
 		enemyState = E_EnemyState.Patrol;
-		patrol = GetComponent<Patrol>();
-		aiDestinationSetter = GetComponent<AIDestinationSetter>();
 	}
 
 	public void Setup(EnemyStats enemyStats)
@@ -97,6 +96,7 @@ public class EnemyMovement : MonoBehaviour
 
 	public void OnSpotEnter()
 	{
+		enemy.PlaySound("detect");
 		DoChase();
 	}
 
@@ -147,7 +147,6 @@ public class EnemyMovement : MonoBehaviour
 		// Debug.Log($"eating started");
 
 		enemyState = E_EnemyState.Attack;
-		soundMaker?.PlaySfx("hit");
 
 		LockRotation(false);
 		patrol.enabled = false;
@@ -227,6 +226,25 @@ public class EnemyMovement : MonoBehaviour
 	public void LockRotation(bool isLocked)
 	{
 		lockRotation = isLocked;
+	}
+
+	public void DoChargeAnimation()
+	{
+		LockRotation(true);
+		animator.SetBool("IsCharging", true);
+		animator.SetFloat("FacingRight", GetPlayerDirection().x);
+	}
+
+	public void OnEndChargeAnimation()
+	{
+		LockRotation(false);
+		EndAttack();
+		animator.SetBool("IsCharging", false);
+	}
+
+	public void DoDeathAnimation()
+	{
+		animator.SetTrigger("Death");
 	}
 }
 
